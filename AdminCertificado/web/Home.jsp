@@ -1,9 +1,12 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
  <%@include file="master/head.jsp" %>
 </head>
 <body class="hold-transition sidebar-mini">
+    <jsp:include page="./EmpresasVigente" flush="true"/>
+    <jsp:useBean id="empresas" class="cl.circuloverde.certificado.entidades.Empresa" scope="page"></jsp:useBean>
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
@@ -54,7 +57,33 @@
           </div>
         </div>
         <div class="card-body">
-          Start creating your amazing application!
+          
+            <table>
+                
+              <thead>
+                    <th>Rut</th>
+                    <th>Razon Social</th>
+                    <th>Holding</th>
+                    <th></th>
+              </thead>
+              
+              <tbody>
+                  <c:forEach items="${empresasVig}" var="empresa">
+                  <tr>
+                      <td><c:out value="${empresa.rutEmpresa}"/></td>
+                      <td><c:out value="${empresa.razonSocial}"/></td>
+                      <td><c:out value="${empresa.idHolding.nomHolding}"/></td>
+                      <td><a href="./detEmpresa?rut_emp=${empresa.rutEmpresa}"><small class="badge badge-danger"> Ver Detalle</small></a> </td>
+                      
+                      
+                  </tr>
+                  </c:forEach>                
+              </tbody>
+                
+            </table> 
+            
+            
+            
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
