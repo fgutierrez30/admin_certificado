@@ -26,16 +26,16 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author fgutierrez
  */
 @Entity
-@Table(name = "representante", catalog = "certificado", schema = "")
+@Table(name = "rpt_legal", catalog = "certificado", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Representante.findAll", query = "SELECT r FROM Representante r")
-    , @NamedQuery(name = "Representante.findByRutRptLegal", query = "SELECT r FROM Representante r WHERE r.rutRptLegal = :rutRptLegal")
-    , @NamedQuery(name = "Representante.findByNomRptLegal", query = "SELECT r FROM Representante r WHERE r.nomRptLegal = :nomRptLegal")
-    , @NamedQuery(name = "Representante.findByApellRptLegal", query = "SELECT r FROM Representante r WHERE r.apellRptLegal = :apellRptLegal")
-    , @NamedQuery(name = "Representante.findByCorreoRptLegal", query = "SELECT r FROM Representante r WHERE r.correoRptLegal = :correoRptLegal")
-    , @NamedQuery(name = "Representante.findByEstadoRptLegal", query = "SELECT r FROM Representante r WHERE r.estadoRptLegal = :estadoRptLegal")})
-public class Representante implements Serializable {
+    @NamedQuery(name = "RptLegal.findAll", query = "SELECT r FROM RptLegal r")
+    , @NamedQuery(name = "RptLegal.findByRutRptLegal", query = "SELECT r FROM RptLegal r WHERE r.rutRptLegal = :rutRptLegal")
+    , @NamedQuery(name = "RptLegal.findByNomRptLegal", query = "SELECT r FROM RptLegal r WHERE r.nomRptLegal = :nomRptLegal")
+    , @NamedQuery(name = "RptLegal.findByApellRptLegal", query = "SELECT r FROM RptLegal r WHERE r.apellRptLegal = :apellRptLegal")
+    , @NamedQuery(name = "RptLegal.findByCorreoRptLegal", query = "SELECT r FROM RptLegal r WHERE r.correoRptLegal = :correoRptLegal")
+    , @NamedQuery(name = "RptLegal.findByEstadoRptLegal", query = "SELECT r FROM RptLegal r WHERE r.estadoRptLegal = :estadoRptLegal")})
+public class RptLegal implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -56,28 +56,26 @@ public class Representante implements Serializable {
     private String apellRptLegal;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 80)
-    @Column(name = "correo_rpt_legal", nullable = false, length = 80)
+    @Size(min = 1, max = 40)
+    @Column(name = "correo_rpt_legal", nullable = false, length = 40)
     private String correoRptLegal;
     @Basic(optional = false)
     @NotNull
     @Column(name = "estado_rpt_legal", nullable = false)
     private int estadoRptLegal;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "rutRptLegal")
-    private List<RptLegalEmpresa> rptLegalEmpresaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rut")
-    private List<PerfilSiiRptLegal> perfilSiiRptLegalList;
+    private List<RptlegalPerfilEmpresa> rptlegalPerfilEmpresaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "rutRptLegal")
     private List<FirmaElectronica> firmaElectronicaList;
 
-    public Representante() {
+    public RptLegal() {
     }
 
-    public Representante(String rutRptLegal) {
+    public RptLegal(String rutRptLegal) {
         this.rutRptLegal = rutRptLegal;
     }
 
-    public Representante(String rutRptLegal, String nomRptLegal, String apellRptLegal, String correoRptLegal, int estadoRptLegal) {
+    public RptLegal(String rutRptLegal, String nomRptLegal, String apellRptLegal, String correoRptLegal, int estadoRptLegal) {
         this.rutRptLegal = rutRptLegal;
         this.nomRptLegal = nomRptLegal;
         this.apellRptLegal = apellRptLegal;
@@ -126,21 +124,12 @@ public class Representante implements Serializable {
     }
 
     @XmlTransient
-    public List<RptLegalEmpresa> getRptLegalEmpresaList() {
-        return rptLegalEmpresaList;
+    public List<RptlegalPerfilEmpresa> getRptlegalPerfilEmpresaList() {
+        return rptlegalPerfilEmpresaList;
     }
 
-    public void setRptLegalEmpresaList(List<RptLegalEmpresa> rptLegalEmpresaList) {
-        this.rptLegalEmpresaList = rptLegalEmpresaList;
-    }
-
-    @XmlTransient
-    public List<PerfilSiiRptLegal> getPerfilSiiRptLegalList() {
-        return perfilSiiRptLegalList;
-    }
-
-    public void setPerfilSiiRptLegalList(List<PerfilSiiRptLegal> perfilSiiRptLegalList) {
-        this.perfilSiiRptLegalList = perfilSiiRptLegalList;
+    public void setRptlegalPerfilEmpresaList(List<RptlegalPerfilEmpresa> rptlegalPerfilEmpresaList) {
+        this.rptlegalPerfilEmpresaList = rptlegalPerfilEmpresaList;
     }
 
     @XmlTransient
@@ -162,10 +151,10 @@ public class Representante implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Representante)) {
+        if (!(object instanceof RptLegal)) {
             return false;
         }
-        Representante other = (Representante) object;
+        RptLegal other = (RptLegal) object;
         if ((this.rutRptLegal == null && other.rutRptLegal != null) || (this.rutRptLegal != null && !this.rutRptLegal.equals(other.rutRptLegal))) {
             return false;
         }
@@ -174,7 +163,7 @@ public class Representante implements Serializable {
 
     @Override
     public String toString() {
-        return "cl.circuloverde.certificado.entidades.Representante[ rutRptLegal=" + rutRptLegal + " ]";
+        return "cl.circuloverde.certificado.entidades.RptLegal[ rutRptLegal=" + rutRptLegal + " ]";
     }
     
 }

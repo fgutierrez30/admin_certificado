@@ -12,6 +12,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -58,9 +60,10 @@ public class UsuarioCv implements Serializable {
     @Column(name = "estado_usr_cv", nullable = false)
     private int estadoUsrCv;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "rutUsrCv")
-    private List<EmpresaUsuarioCv> empresaUsuarioCvList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rutUsrCv")
-    private List<PerfilSiiUsrCv> perfilSiiUsrCvList;
+    private List<UsrPerfilEmpresa> usrPerfilEmpresaList;
+    @JoinColumn(name = "tipo_usr_cv", referencedColumnName = "id_cargo_usr", nullable = false)
+    @ManyToOne(optional = false)
+    private CargoUsr tipoUsrCv;
 
     public UsuarioCv() {
     }
@@ -109,21 +112,20 @@ public class UsuarioCv implements Serializable {
     }
 
     @XmlTransient
-    public List<EmpresaUsuarioCv> getEmpresaUsuarioCvList() {
-        return empresaUsuarioCvList;
+    public List<UsrPerfilEmpresa> getUsrPerfilEmpresaList() {
+        return usrPerfilEmpresaList;
     }
 
-    public void setEmpresaUsuarioCvList(List<EmpresaUsuarioCv> empresaUsuarioCvList) {
-        this.empresaUsuarioCvList = empresaUsuarioCvList;
+    public void setUsrPerfilEmpresaList(List<UsrPerfilEmpresa> usrPerfilEmpresaList) {
+        this.usrPerfilEmpresaList = usrPerfilEmpresaList;
     }
 
-    @XmlTransient
-    public List<PerfilSiiUsrCv> getPerfilSiiUsrCvList() {
-        return perfilSiiUsrCvList;
+    public CargoUsr getTipoUsrCv() {
+        return tipoUsrCv;
     }
 
-    public void setPerfilSiiUsrCvList(List<PerfilSiiUsrCv> perfilSiiUsrCvList) {
-        this.perfilSiiUsrCvList = perfilSiiUsrCvList;
+    public void setTipoUsrCv(CargoUsr tipoUsrCv) {
+        this.tipoUsrCv = tipoUsrCv;
     }
 
     @Override

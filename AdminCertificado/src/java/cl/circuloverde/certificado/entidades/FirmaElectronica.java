@@ -36,7 +36,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "FirmaElectronica.findByIdFirma", query = "SELECT f FROM FirmaElectronica f WHERE f.idFirma = :idFirma")
     , @NamedQuery(name = "FirmaElectronica.findByFechaCompra", query = "SELECT f FROM FirmaElectronica f WHERE f.fechaCompra = :fechaCompra")
     , @NamedQuery(name = "FirmaElectronica.findByFechaVcto", query = "SELECT f FROM FirmaElectronica f WHERE f.fechaVcto = :fechaVcto")
-    , @NamedQuery(name = "FirmaElectronica.findByClaveInstalacion", query = "SELECT f FROM FirmaElectronica f WHERE f.claveInstalacion = :claveInstalacion")})
+    , @NamedQuery(name = "FirmaElectronica.findByClaveInstalacion", query = "SELECT f FROM FirmaElectronica f WHERE f.claveInstalacion = :claveInstalacion")
+    , @NamedQuery(name = "FirmaElectronica.findByEstadoFirma", query = "SELECT f FROM FirmaElectronica f WHERE f.estadoFirma = :estadoFirma")})
 public class FirmaElectronica implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,12 +58,16 @@ public class FirmaElectronica implements Serializable {
     private Date fechaVcto;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "clave_instalacion", nullable = false, length = 10)
+    @Size(min = 1, max = 20)
+    @Column(name = "clave_instalacion", nullable = false, length = 20)
     private String claveInstalacion;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "estado_firma", nullable = false)
+    private int estadoFirma;
     @JoinColumn(name = "rut_rpt_legal", referencedColumnName = "rut_rpt_legal", nullable = false)
     @ManyToOne(optional = false)
-    private Representante rutRptLegal;
+    private RptLegal rutRptLegal;
 
     public FirmaElectronica() {
     }
@@ -71,11 +76,12 @@ public class FirmaElectronica implements Serializable {
         this.idFirma = idFirma;
     }
 
-    public FirmaElectronica(Integer idFirma, Date fechaCompra, Date fechaVcto, String claveInstalacion) {
+    public FirmaElectronica(Integer idFirma, Date fechaCompra, Date fechaVcto, String claveInstalacion, int estadoFirma) {
         this.idFirma = idFirma;
         this.fechaCompra = fechaCompra;
         this.fechaVcto = fechaVcto;
         this.claveInstalacion = claveInstalacion;
+        this.estadoFirma = estadoFirma;
     }
 
     public Integer getIdFirma() {
@@ -110,11 +116,19 @@ public class FirmaElectronica implements Serializable {
         this.claveInstalacion = claveInstalacion;
     }
 
-    public Representante getRutRptLegal() {
+    public int getEstadoFirma() {
+        return estadoFirma;
+    }
+
+    public void setEstadoFirma(int estadoFirma) {
+        this.estadoFirma = estadoFirma;
+    }
+
+    public RptLegal getRutRptLegal() {
         return rutRptLegal;
     }
 
-    public void setRutRptLegal(Representante rutRptLegal) {
+    public void setRutRptLegal(RptLegal rutRptLegal) {
         this.rutRptLegal = rutRptLegal;
     }
 

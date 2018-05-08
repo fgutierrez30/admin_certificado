@@ -34,11 +34,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Empresa.findAll", query = "SELECT e FROM Empresa e")
     , @NamedQuery(name = "Empresa.findByRutEmpresa", query = "SELECT e FROM Empresa e WHERE e.rutEmpresa = :rutEmpresa")
     , @NamedQuery(name = "Empresa.findByRazonSocial", query = "SELECT e FROM Empresa e WHERE e.razonSocial = :razonSocial")
-    , @NamedQuery(name = "Empresa.findByRutRptLegal", query = "SELECT e FROM Empresa e WHERE e.rutRptLegal = :rutRptLegal")
     , @NamedQuery(name = "Empresa.findByEstadoEmp", query = "SELECT e FROM Empresa e WHERE e.estadoEmp = :estadoEmp")
-    , @NamedQuery(name = "Empresa.findByCorreoContacto", query = "SELECT e FROM Empresa e WHERE e.correoContacto = :correoContacto")
-    , @NamedQuery(name = "Empresa.findByCorreoSii", query = "SELECT e FROM Empresa e WHERE e.correoSii = :correoSii")
-    , @NamedQuery(name = "Empresa.findByCorreoAdmin", query = "SELECT e FROM Empresa e WHERE e.correoAdmin = :correoAdmin")})
+    , @NamedQuery(name = "Empresa.findByMailContacto", query = "SELECT e FROM Empresa e WHERE e.mailContacto = :mailContacto")
+    , @NamedQuery(name = "Empresa.findByMailSii", query = "SELECT e FROM Empresa e WHERE e.mailSii = :mailSii")
+    , @NamedQuery(name = "Empresa.findByMailAdm", query = "SELECT e FROM Empresa e WHERE e.mailAdm = :mailAdm")})
 public class Empresa implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -55,32 +54,27 @@ public class Empresa implements Serializable {
     private String razonSocial;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "rut_rpt_legal", nullable = false, length = 10)
-    private String rutRptLegal;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "estado_emp", nullable = false)
     private int estadoEmp;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 80)
-    @Column(name = "correo_contacto", nullable = false, length = 80)
-    private String correoContacto;
+    @Column(name = "mail_contacto", nullable = false, length = 80)
+    private String mailContacto;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 80)
-    @Column(name = "correo_sii", nullable = false, length = 80)
-    private String correoSii;
+    @Column(name = "mail_sii", nullable = false, length = 80)
+    private String mailSii;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 80)
-    @Column(name = "correo_admin", nullable = false, length = 80)
-    private String correoAdmin;
+    @Column(name = "mail_adm", nullable = false, length = 80)
+    private String mailAdm;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "rutEmpresa")
-    private List<EmpresaUsuarioCv> empresaUsuarioCvList;
+    private List<RptlegalPerfilEmpresa> rptlegalPerfilEmpresaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "rutEmpresa")
-    private List<RptLegalEmpresa> rptLegalEmpresaList;
+    private List<UsrPerfilEmpresa> usrPerfilEmpresaList;
     @JoinColumn(name = "id_holding", referencedColumnName = "id_holding", nullable = false)
     @ManyToOne(optional = false)
     private Holding idHolding;
@@ -92,14 +86,13 @@ public class Empresa implements Serializable {
         this.rutEmpresa = rutEmpresa;
     }
 
-    public Empresa(String rutEmpresa, String razonSocial, String rutRptLegal, int estadoEmp, String correoContacto, String correoSii, String correoAdmin) {
+    public Empresa(String rutEmpresa, String razonSocial, int estadoEmp, String mailContacto, String mailSii, String mailAdm) {
         this.rutEmpresa = rutEmpresa;
         this.razonSocial = razonSocial;
-        this.rutRptLegal = rutRptLegal;
         this.estadoEmp = estadoEmp;
-        this.correoContacto = correoContacto;
-        this.correoSii = correoSii;
-        this.correoAdmin = correoAdmin;
+        this.mailContacto = mailContacto;
+        this.mailSii = mailSii;
+        this.mailAdm = mailAdm;
     }
 
     public String getRutEmpresa() {
@@ -118,14 +111,6 @@ public class Empresa implements Serializable {
         this.razonSocial = razonSocial;
     }
 
-    public String getRutRptLegal() {
-        return rutRptLegal;
-    }
-
-    public void setRutRptLegal(String rutRptLegal) {
-        this.rutRptLegal = rutRptLegal;
-    }
-
     public int getEstadoEmp() {
         return estadoEmp;
     }
@@ -134,46 +119,46 @@ public class Empresa implements Serializable {
         this.estadoEmp = estadoEmp;
     }
 
-    public String getCorreoContacto() {
-        return correoContacto;
+    public String getMailContacto() {
+        return mailContacto;
     }
 
-    public void setCorreoContacto(String correoContacto) {
-        this.correoContacto = correoContacto;
+    public void setMailContacto(String mailContacto) {
+        this.mailContacto = mailContacto;
     }
 
-    public String getCorreoSii() {
-        return correoSii;
+    public String getMailSii() {
+        return mailSii;
     }
 
-    public void setCorreoSii(String correoSii) {
-        this.correoSii = correoSii;
+    public void setMailSii(String mailSii) {
+        this.mailSii = mailSii;
     }
 
-    public String getCorreoAdmin() {
-        return correoAdmin;
+    public String getMailAdm() {
+        return mailAdm;
     }
 
-    public void setCorreoAdmin(String correoAdmin) {
-        this.correoAdmin = correoAdmin;
-    }
-
-    @XmlTransient
-    public List<EmpresaUsuarioCv> getEmpresaUsuarioCvList() {
-        return empresaUsuarioCvList;
-    }
-
-    public void setEmpresaUsuarioCvList(List<EmpresaUsuarioCv> empresaUsuarioCvList) {
-        this.empresaUsuarioCvList = empresaUsuarioCvList;
+    public void setMailAdm(String mailAdm) {
+        this.mailAdm = mailAdm;
     }
 
     @XmlTransient
-    public List<RptLegalEmpresa> getRptLegalEmpresaList() {
-        return rptLegalEmpresaList;
+    public List<RptlegalPerfilEmpresa> getRptlegalPerfilEmpresaList() {
+        return rptlegalPerfilEmpresaList;
     }
 
-    public void setRptLegalEmpresaList(List<RptLegalEmpresa> rptLegalEmpresaList) {
-        this.rptLegalEmpresaList = rptLegalEmpresaList;
+    public void setRptlegalPerfilEmpresaList(List<RptlegalPerfilEmpresa> rptlegalPerfilEmpresaList) {
+        this.rptlegalPerfilEmpresaList = rptlegalPerfilEmpresaList;
+    }
+
+    @XmlTransient
+    public List<UsrPerfilEmpresa> getUsrPerfilEmpresaList() {
+        return usrPerfilEmpresaList;
+    }
+
+    public void setUsrPerfilEmpresaList(List<UsrPerfilEmpresa> usrPerfilEmpresaList) {
+        this.usrPerfilEmpresaList = usrPerfilEmpresaList;
     }
 
     public Holding getIdHolding() {

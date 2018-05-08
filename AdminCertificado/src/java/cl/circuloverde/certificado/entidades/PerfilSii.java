@@ -44,13 +44,13 @@ public class PerfilSii implements Serializable {
     private Integer idPerfil;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "nom_perfil", nullable = false, length = 50)
+    @Size(min = 1, max = 80)
+    @Column(name = "nom_perfil", nullable = false, length = 80)
     private String nomPerfil;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPerfil")
-    private List<PerfilSiiRptLegal> perfilSiiRptLegalList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTpoPerfil")
-    private List<PerfilSiiUsrCv> perfilSiiUsrCvList;
+    private List<RptlegalPerfilEmpresa> rptlegalPerfilEmpresaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPerfil")
+    private List<UsrPerfilEmpresa> usrPerfilEmpresaList;
 
     public PerfilSii() {
     }
@@ -81,21 +81,21 @@ public class PerfilSii implements Serializable {
     }
 
     @XmlTransient
-    public List<PerfilSiiRptLegal> getPerfilSiiRptLegalList() {
-        return perfilSiiRptLegalList;
+    public List<RptlegalPerfilEmpresa> getRptlegalPerfilEmpresaList() {
+        return rptlegalPerfilEmpresaList;
     }
 
-    public void setPerfilSiiRptLegalList(List<PerfilSiiRptLegal> perfilSiiRptLegalList) {
-        this.perfilSiiRptLegalList = perfilSiiRptLegalList;
+    public void setRptlegalPerfilEmpresaList(List<RptlegalPerfilEmpresa> rptlegalPerfilEmpresaList) {
+        this.rptlegalPerfilEmpresaList = rptlegalPerfilEmpresaList;
     }
 
     @XmlTransient
-    public List<PerfilSiiUsrCv> getPerfilSiiUsrCvList() {
-        return perfilSiiUsrCvList;
+    public List<UsrPerfilEmpresa> getUsrPerfilEmpresaList() {
+        return usrPerfilEmpresaList;
     }
 
-    public void setPerfilSiiUsrCvList(List<PerfilSiiUsrCv> perfilSiiUsrCvList) {
-        this.perfilSiiUsrCvList = perfilSiiUsrCvList;
+    public void setUsrPerfilEmpresaList(List<UsrPerfilEmpresa> usrPerfilEmpresaList) {
+        this.usrPerfilEmpresaList = usrPerfilEmpresaList;
     }
 
     @Override

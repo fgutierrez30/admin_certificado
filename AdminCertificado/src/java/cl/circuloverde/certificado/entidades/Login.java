@@ -21,17 +21,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author dsantander
+ * @author fgutierrez
  */
 @Entity
 @Table(name = "login", catalog = "certificado", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Login.findAll", query = "SELECT l FROM Login l"),
-    @NamedQuery(name = "Login.findByIdLogin", query = "SELECT l FROM Login l WHERE l.idLogin = :idLogin"),
-    @NamedQuery(name = "Login.findByUsuLogin", query = "SELECT l FROM Login l WHERE l.usuLogin = :usuLogin"),
-    @NamedQuery(name = "Login.findByPassLogin", query = "SELECT l FROM Login l WHERE l.passLogin = :passLogin"),
-    @NamedQuery(name = "Login.findByDescripLogin", query = "SELECT l FROM Login l WHERE l.descripLogin = :descripLogin")})
+      @NamedQuery(name = "Login.findByUsrClave", query = "SELECT l FROM Login l WHERE l.usrname= :usr AND l.clave= :clave")
+    , @NamedQuery(name = "Login.findAll", query = "SELECT l FROM Login l")
+    , @NamedQuery(name = "Login.findByIdLogin", query = "SELECT l FROM Login l WHERE l.idLogin = :idLogin")
+    , @NamedQuery(name = "Login.findByUsrname", query = "SELECT l FROM Login l WHERE l.usrname = :usrname")
+    , @NamedQuery(name = "Login.findByClave", query = "SELECT l FROM Login l WHERE l.clave = :clave")
+    , @NamedQuery(name = "Login.findByEstadoLogin", query = "SELECT l FROM Login l WHERE l.estadoLogin = :estadoLogin")
+    , @NamedQuery(name = "Login.findByNomCompleto", query = "SELECT l FROM Login l WHERE l.nomCompleto = :nomCompleto")})
 public class Login implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,18 +45,22 @@ public class Login implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 15)
-    @Column(name = "usu_login", nullable = false, length = 15)
-    private String usuLogin;
+    @Column(name = "usrname", nullable = false, length = 15)
+    private String usrname;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 15)
-    @Column(name = "pass_login", nullable = false, length = 15)
-    private String passLogin;
+    @Size(min = 1, max = 10)
+    @Column(name = "clave", nullable = false, length = 10)
+    private String clave;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "estado_login", nullable = false)
+    private int estadoLogin;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
-    @Column(name = "descrip_login", nullable = false, length = 50)
-    private String descripLogin;
+    @Column(name = "nom_completo", nullable = false, length = 50)
+    private String nomCompleto;
 
     public Login() {
     }
@@ -63,11 +69,12 @@ public class Login implements Serializable {
         this.idLogin = idLogin;
     }
 
-    public Login(Integer idLogin, String usuLogin, String passLogin, String descripLogin) {
+    public Login(Integer idLogin, String usrname, String clave, int estadoLogin, String nomCompleto) {
         this.idLogin = idLogin;
-        this.usuLogin = usuLogin;
-        this.passLogin = passLogin;
-        this.descripLogin = descripLogin;
+        this.usrname = usrname;
+        this.clave = clave;
+        this.estadoLogin = estadoLogin;
+        this.nomCompleto = nomCompleto;
     }
 
     public Integer getIdLogin() {
@@ -78,28 +85,36 @@ public class Login implements Serializable {
         this.idLogin = idLogin;
     }
 
-    public String getUsuLogin() {
-        return usuLogin;
+    public String getUsrname() {
+        return usrname;
     }
 
-    public void setUsuLogin(String usuLogin) {
-        this.usuLogin = usuLogin;
+    public void setUsrname(String usrname) {
+        this.usrname = usrname;
     }
 
-    public String getPassLogin() {
-        return passLogin;
+    public String getClave() {
+        return clave;
     }
 
-    public void setPassLogin(String passLogin) {
-        this.passLogin = passLogin;
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 
-    public String getDescripLogin() {
-        return descripLogin;
+    public int getEstadoLogin() {
+        return estadoLogin;
     }
 
-    public void setDescripLogin(String descripLogin) {
-        this.descripLogin = descripLogin;
+    public void setEstadoLogin(int estadoLogin) {
+        this.estadoLogin = estadoLogin;
+    }
+
+    public String getNomCompleto() {
+        return nomCompleto;
+    }
+
+    public void setNomCompleto(String nomCompleto) {
+        this.nomCompleto = nomCompleto;
     }
 
     @Override
