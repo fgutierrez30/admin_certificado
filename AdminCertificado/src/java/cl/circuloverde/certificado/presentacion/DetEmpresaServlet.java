@@ -44,8 +44,16 @@ public class DetEmpresaServlet extends HttpServlet {
         List<RptlegalPerfilEmpresa> rpt=this.objRptPerfEmpSessionBean.rptEmp(rut);
         if(rpt==null)
         {
-            String sinRpt="Sin Representante Asignado";
-            sesion.setAttribute("sinRpt", sinRpt);
+            RptlegalPerfilEmpresa rptNull=new RptlegalPerfilEmpresa();
+            rptNull.getRutRptLegal().setRutRptLegal("Sin Asignar");
+            rptNull.getRutRptLegal().setNomRptLegal("Sin Asignar");
+            rptNull.getRutRptLegal().setApellRptLegal("Sin Asignar");
+            rptNull.getRutRptLegal().setCorreoRptLegal("Sin Asignar");
+            rptNull.getRutRptLegal().setEstadoRptLegal(2);
+            rptNull.getRutRptLegal().setFirmaElectronicaList(null);
+            
+            rpt.add(rptNull);
+            sesion.setAttribute("rpt", rpt);
             sesion.setAttribute("empresa", empresa);
         }else
         {

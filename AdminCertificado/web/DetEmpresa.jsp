@@ -8,6 +8,7 @@
 </head>
 <body class="hold-transition sidebar-mini">
       <jsp:useBean id="empresas" class="cl.circuloverde.certificado.entidades.Empresa" scope="page"></jsp:useBean>
+      <jsp:useBean id="rptsLegal" class="cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa" scope="page"></jsp:useBean>
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
@@ -54,11 +55,9 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-<<<<<<< HEAD
+
           <h3 class="card-title">Mantenedor de Clientes</h3>
-=======
-          
->>>>>>> 62704c0b3ba89f0fe62bd6ae9f4541d134b81b2a
+
 
           
    <section class="content">
@@ -133,19 +132,51 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form class="form-horizontal">
+              
                 <div class="card-body">
-                    <div class="form-group">
-                    <label  class="col-sm-2 control-label">Rut:</label>
-                    </div>
-                    
-                    <div class="form-group">
-                    <label  class="col-sm-2 control-label">Nombre:</label>
-                    </div>
-                  
-                    <div class="form-group">
-                    <label  class="col-sm-2 control-label">Correo:</label>
-                    </div>
+                    <table>
+                        
+                        <thead>
+                            
+                        <th>Rut</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Estado</th>
+                        <th>Correo</th>
+                         
+                        </thead>
+                        <tbody>
+                            <c:forEach items="${rpt}" var="infRpt">
+                            <tr>
+                                <td><c:out value="${infRpt.rutRptLegal.rutRptLegal}"/> </td>
+                                <td><c:out value="${infRpt.rutRptLegal.nomRptLegal}"/></td>
+                                <td><c:out value="${infRpt.rutRptLegal.apellRptLegal}"/></td>
+                                <c:choose>
+                                    <c:when test="${infRpt.rutRptLegal.estadoRptLegal==2}">
+                                            Sin Asignar
+                                        </c:when>
+                                            <c:when test="${infRpt.rutRptLegal.estadoRptLegal==0}">
+                                            No Vigente
+                                        </c:when>
+                                        <c:otherwise>
+                                            Vigente
+                                        </c:otherwise>
+                                 </c:choose>
+                                
+                                
+                                
+                                <td><c:out value="${infRpt.rutRptLegal.correoRptLegal}"/></td>
+                                
+                                       
+                                
+                                
+                            </tr>
+                            
+                           </c:forEach> 
+                        </tbody>   
+                        
+                        
+                    </table>
                   </div>
                   
                 </div>
@@ -155,8 +186,7 @@
                   <button type="submit" class="btn btn-default float-right">Cancel</button>
                 </div>
                 <!-- /.card-footer -->
-              </form>
-            </div>
+                </div>
             <!-- /.card -->
             <!-- general form elements disabled -->
            
@@ -171,18 +201,18 @@
  
          
         </div>
-<<<<<<< HEAD
+
         <div class="card-body">
 
         </div>
           
  
-=======
+
        
           
  
         <!-- /.card-body -->
->>>>>>> 62704c0b3ba89f0fe62bd6ae9f4541d134b81b2a
+
         
         <!-- /.card-footer-->
       </div>
