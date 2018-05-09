@@ -6,6 +6,7 @@
 package cl.circuloverde.certificado.presentacion;
 
 import cl.circuloverde.certificado.entidades.Empresa;
+import cl.circuloverde.certificado.entidades.RptLegal;
 import cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa;
 import cl.circuloverde.certificado.persistencia.EmpresaSessionBean;
 import cl.circuloverde.certificado.persistencia.RptPerfEmpSessionBean;
@@ -42,16 +43,16 @@ public class DetEmpresaServlet extends HttpServlet {
         Empresa empresa=this.objEmpresaSessionBean.empresaXRut(rut);
         
         List<RptlegalPerfilEmpresa> rpt=this.objRptPerfEmpSessionBean.rptEmp(rut);
-        if(rpt==null)
+        if(rpt.isEmpty())
         {
             RptlegalPerfilEmpresa rptNull=new RptlegalPerfilEmpresa();
-            rptNull.getRutRptLegal().setRutRptLegal("Sin Asignar");
-            rptNull.getRutRptLegal().setNomRptLegal("Sin Asignar");
-            rptNull.getRutRptLegal().setApellRptLegal("Sin Asignar");
-            rptNull.getRutRptLegal().setCorreoRptLegal("Sin Asignar");
-            rptNull.getRutRptLegal().setEstadoRptLegal(2);
-            rptNull.getRutRptLegal().setFirmaElectronicaList(null);
+            RptLegal rptaux=new RptLegal();
             
+            
+            rptaux.setEstadoRptLegal(2);
+            
+            
+            rptNull.setRutRptLegal(rptaux);
             rpt.add(rptNull);
             sesion.setAttribute("rpt", rpt);
             sesion.setAttribute("empresa", empresa);
