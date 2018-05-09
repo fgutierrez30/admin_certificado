@@ -8,7 +8,11 @@
 </head>
 <body class="hold-transition sidebar-mini">
       <jsp:useBean id="empresas" class="cl.circuloverde.certificado.entidades.Empresa" scope="page"></jsp:useBean>
+<<<<<<< HEAD
+      <jsp:useBean id="rpt" class="cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa" scope="page"></jsp:useBean>
+=======
       <jsp:useBean id="rptsLegal" class="cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa" scope="page"></jsp:useBean>
+>>>>>>> 21e97296691c8ab8f2b0045f8cd17621ac02b36c
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
@@ -134,6 +138,20 @@
               <!-- form start -->
               
                 <div class="card-body">
+<<<<<<< HEAD
+                    <div class="form-group">
+                    <label  class="col-sm-2 control-label">Rut:</label>
+                    <c:out value="${rpt.rutRptLegal.rutRptLegal}"/>
+                    </div>
+                    
+                    <div class="form-group">
+                    <label  class="col-sm-2 control-label">Nombre:</label>
+                    </div>
+                  
+                    <div class="form-group">
+                    <label  class="col-sm-2 control-label">Correo:</label>
+                    </div>
+=======
                     <table>
                         
                         <thead>
@@ -174,6 +192,7 @@
                         
                         
                     </table>
+>>>>>>> 21e97296691c8ab8f2b0045f8cd17621ac02b36c
                   </div>
                   
                 </div>
