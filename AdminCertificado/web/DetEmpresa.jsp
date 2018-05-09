@@ -17,9 +17,24 @@
   </nav>
   <!-- /.navbar -->
 
+<<<<<<< HEAD
   
   <%@include file="master/menu.jsp" %>
   
+=======
+
+  
+  
+  
+  <%@include file="master/menu.jsp" %>
+  
+  
+  
+  
+  
+  
+
+>>>>>>> f8a2a79e884bb3a139f29828fb8b1e012e22f59a
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -41,6 +56,7 @@
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">Mantenedor de Clientes</h3>
+<<<<<<< HEAD
           
    <section class="content">
       <div class="container-fluid">
@@ -161,6 +177,58 @@
             
             
             
+=======
+
+         
+        </div>
+          
+        <div class="card-body">
+            <div class="col-md-6">
+            <div class="col-md-6">
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">Different Width</h3>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-3">
+                    <input type="text" class="form-control" placeholder=".col-3">
+                  </div>
+                  <div class="col-4">
+                    <input type="text" class="form-control" placeholder=".col-4">
+                  </div>
+                  <div class="col-5">
+                    <input type="text" class="form-control" placeholder=".col-5">
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+         </div>
+            <div class="col-md-6"> 
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">Different Width</h3>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-3">
+                    <input type="text" class="form-control" placeholder=".col-3">
+                  </div>
+                  <div class="col-4">
+                    <input type="text" class="form-control" placeholder=".col-4">
+                  </div>
+                  <div class="col-5">
+                    <input type="text" class="form-control" placeholder=".col-5">
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            
+          </div>  
+           </div> 
+>>>>>>> f8a2a79e884bb3a139f29828fb8b1e012e22f59a
         </div>
         <!-- /.card-body -->
         
@@ -183,7 +251,11 @@
 </div>
 <!-- ./wrapper -->
 
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> f8a2a79e884bb3a139f29828fb8b1e012e22f59a
 <!-- jQuery -->
 
 </body>
