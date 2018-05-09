@@ -23,7 +23,7 @@ public class LoginSessionBean {
     
     public Login login(String usr,String clave)
     {
-        int log=0;
+        
         Login login=new Login();
         
         try{
