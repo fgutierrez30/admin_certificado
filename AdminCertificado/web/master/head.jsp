@@ -24,3 +24,8 @@
 <script src="js/adminlte.min.js" type="text/javascript"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="js/demo.js" type="text/javascript"></script>
+
+<script src="js/jquery-2.2.3.min.js" type="text/javascript"></script>
+ <link rel="stylesheet" href="http://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+ <script src="js/DataTable.js" type="text/javascript"></script>
+ 

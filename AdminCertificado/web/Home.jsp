@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+   
+  
  <%@include file="master/head.jsp" %>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -34,7 +36,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Blank Page</h1>
+            <h1>Empresas Vigentes</h1>
           </div>
           
         </div>
@@ -47,18 +49,13 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Title</h3>
+          <h3 class="card-title">Mantenedor de Clientes</h3>
 
-          <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-              <i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
-          </div>
+         
         </div>
         <div class="card-body">
           
-            <table>
+            <table id="ejemplo" class="table table-bordered table-hover">
                 
               <thead>
                     <th>Rut</th>
@@ -86,9 +83,7 @@
             
         </div>
         <!-- /.card-body -->
-        <div class="card-footer">
-          Footer
-        </div>
+        
         <!-- /.card-footer-->
       </div>
       <!-- /.card -->
@@ -108,6 +103,32 @@
 </div>
 <!-- ./wrapper -->
 
+ <script>
+    
+    $(document).ready( function () {
+        
+    $('#ejemplo').DataTable(
+            {
+                language:{
+                    
+                    search: "Buscar:",
+                    sInfoEmpty:"Mostrando registros del 0 al 0 de un total de 0 registros",
+                    sInfo:"Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    oPaginate: {
+                                sFirst:    "Primero",
+                                sLast:     "Último",
+                                sNext:     "Siguiente",
+                                sPrevious: "Anterior"
+                                },
+                    sInfoFiltered:   "(filtrado de un total de _MAX_ registros)",
+                    sLengthMenu:     "Mostrar _MENU_ registros"
+                }
+            } 
+                );
+    
+    } );
+    
+</script>
 <!-- jQuery -->
 
 </body>
