@@ -6,9 +6,12 @@
 package cl.circuloverde.certificado.presentacion;
 
 import cl.circuloverde.certificado.entidades.Empresa;
+import cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa;
 import cl.circuloverde.certificado.persistencia.EmpresaSessionBean;
+import cl.circuloverde.certificado.persistencia.RptPerfEmpSessionBean;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,7 +30,8 @@ public class DetEmpresaServlet extends HttpServlet {
     @EJB
     private EmpresaSessionBean objEmpresaSessionBean;
     
-    
+    @EJB
+    private RptPerfEmpSessionBean objRptPerfEmpSessionBean;
   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -36,7 +40,18 @@ public class DetEmpresaServlet extends HttpServlet {
         HttpSession sesion=request.getSession();
         String rut=request.getParameter("rut_emp");
         Empresa empresa=this.objEmpresaSessionBean.empresaXRut(rut);
+        
+        List<RptlegalPerfilEmpresa> rpt=this.objRptPerfEmpSessionBean.rptEmp(rut);
+        if(rpt==null)
+        {
+            String sinRpt="Sin Representante Asignado";
+            sesion.setAttribute("sinRpt", sinRpt);
+            sesion.setAttribute("empresa", empresa);
+        }else
+        {
+        sesion.setAttribute("rpt", rpt);
         sesion.setAttribute("empresa", empresa);
+        }
         response.sendRedirect("DetEmpresa.jsp");
         
     }
