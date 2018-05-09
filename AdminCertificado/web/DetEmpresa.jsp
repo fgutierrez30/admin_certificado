@@ -8,6 +8,7 @@
 </head>
 <body class="hold-transition sidebar-mini">
       <jsp:useBean id="empresas" class="cl.circuloverde.certificado.entidades.Empresa" scope="page"></jsp:useBean>
+      <jsp:useBean id="rpt" class="cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa" scope="page"></jsp:useBean>
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
@@ -54,11 +55,9 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-<<<<<<< HEAD
+
           <h3 class="card-title">Mantenedor de Clientes</h3>
-=======
-          
->>>>>>> 62704c0b3ba89f0fe62bd6ae9f4541d134b81b2a
+
 
           
    <section class="content">
@@ -137,6 +136,7 @@
                 <div class="card-body">
                     <div class="form-group">
                     <label  class="col-sm-2 control-label">Rut:</label>
+                    <c:out value="${rpt.rutRptLegal.rutRptLegal}"/>
                     </div>
                     
                     <div class="form-group">
