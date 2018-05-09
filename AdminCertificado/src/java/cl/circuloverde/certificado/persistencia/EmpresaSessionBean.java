@@ -19,5 +19,10 @@ public class EmpresaSessionBean {
     {
         return em.createNamedQuery("Empresa.findByEstadoEmp", Empresa.class).setParameter("estadoEmp",0).getResultList();
     }
+    
+    public Empresa empresaXRut(String rut)
+    {
+      return em.createNamedQuery("Empresa.findByRutEmpresa", Empresa.class).setParameter("rutEmpresa", rut).getSingleResult();
+    }
    
 }
