@@ -132,21 +132,18 @@
                     <table>
                         
                         <thead>
-                            
+                         
+                        <th>Estado</th>
                         <th>Rut</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
-                        <th>Estado</th>
                         <th>Correo</th>
                          
                         </thead>
                         <tbody>
                             <c:forEach items="${rpt}" var="infRpt">
                             <tr>
-                                <td><c:out value="${infRpt.rutRptLegal.rutRptLegal}"/> </td>
-                                <td><c:out value="${infRpt.rutRptLegal.nomRptLegal}"/></td>
-                                <td><c:out value="${infRpt.rutRptLegal.apellRptLegal}"/></td>
-                                <c:choose>
+                                <td><c:choose>
                                     <c:when test="${infRpt.rutRptLegal.estadoRptLegal==2}">
                                             Sin Asignar
                                     </c:when>
@@ -158,13 +155,13 @@
                                         </c:otherwise>
                                  </c:choose>
                                 
-                                
-                                
+                                </td>
+                                <td><c:out value="${infRpt.rutRptLegal.rutRptLegal}"/> </td>
+                                <td><c:out value="${infRpt.rutRptLegal.nomRptLegal}"/></td>
+                                <td><c:out value="${infRpt.rutRptLegal.apellRptLegal}"/></td>
+                                                               
                                 <td><c:out value="${infRpt.rutRptLegal.correoRptLegal}"/></td>
-                                
-                                       
-                                
-                                
+                               
                             </tr>
                             
                            </c:forEach> 
