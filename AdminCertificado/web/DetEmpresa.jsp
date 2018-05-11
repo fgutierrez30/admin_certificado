@@ -10,7 +10,11 @@
       <jsp:useBean id="empresas" class="cl.circuloverde.certificado.entidades.Empresa" scope="page"></jsp:useBean>
 
 
+<<<<<<< HEAD
       <jsp:useBean id="rpt" class="cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa" scope="page"></jsp:useBean>
+=======
+      <jsp:useBean id="rpts" class="cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa" scope="page"></jsp:useBean>
+>>>>>>> b1691ac32c4c0fda55bae1ccdc434cd1d3129b16
 
 
       <jsp:useBean id="rptsLegal" class="cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa" scope="page"></jsp:useBean>
@@ -99,7 +103,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Mail Administrador:</label>
-                    <c:out value="${empresa.mailAdm}"/>
+                    
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Holding:</label>
@@ -133,11 +137,15 @@
 
                     
                     <table class="table">
+<<<<<<< HEAD
 
 
                     <table>
 
                         
+=======
+
+>>>>>>> b1691ac32c4c0fda55bae1ccdc434cd1d3129b16
                         <thead>
                          
                         <th>Estado</th>
@@ -157,15 +165,20 @@
 
                                         </c:when>
                                             <c:when test="${infRpt.estadoAsigna==1}">
+<<<<<<< HEAD
 
                                     </c:when>
                                             <c:when test="${infRpt.rutRptLegal.estadoRptLegal==0}">
 
                                             No Vigente
+=======
+                                                No Vigente
+                                             </c:when>
+                                            <c:when test="${infRpt.rutRptLegal.estadoRptLegal==0}">
+                                                Vigente
+>>>>>>> b1691ac32c4c0fda55bae1ccdc434cd1d3129b16
                                             </c:when>
-                                        <c:otherwise>
-                                            Vigente
-                                        </c:otherwise>
+                                       
                                  </c:choose>
                                 
                                 </td>
@@ -216,15 +229,7 @@
     <!-- /.content -->
  
          
-        
-
-        <div class="card-body">
-
-        </div>
-          
- 
-
-       
+      
           
  
         <!-- /.card-body -->
@@ -241,10 +246,7 @@
 
  
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
+
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->

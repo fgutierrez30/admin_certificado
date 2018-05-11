@@ -46,13 +46,8 @@ public class DetEmpresaServlet extends HttpServlet {
         if(rpt.isEmpty())
         {
             RptlegalPerfilEmpresa rptNull=new RptlegalPerfilEmpresa();
-            RptLegal rptaux=new RptLegal();
-            
-            
-            rptaux.setEstadoRptLegal(2);
-            
-            
-            rptNull.setRutRptLegal(rptaux);
+                        
+            rptNull.setEstadoAsigna(2);
             rpt.add(rptNull);
             sesion.setAttribute("rpt", rpt);
             sesion.setAttribute("empresa", empresa);
