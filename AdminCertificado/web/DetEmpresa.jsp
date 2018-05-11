@@ -9,10 +9,9 @@
 <body class="hold-transition sidebar-mini">
       <jsp:useBean id="empresas" class="cl.circuloverde.certificado.entidades.Empresa" scope="page"></jsp:useBean>
 
-<<<<<<< HEAD
-=======
+
       <jsp:useBean id="rpt" class="cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa" scope="page"></jsp:useBean>
->>>>>>> 443fc395b887158412a57e7004b75c45fc032402
+
 
       <jsp:useBean id="rptsLegal" class="cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa" scope="page"></jsp:useBean>
 
@@ -131,13 +130,13 @@
               
                 <div class="card-body">
 
-<<<<<<< HEAD
+
                     
                     <table class="table">
-=======
+
 
                     <table>
->>>>>>> 443fc395b887158412a57e7004b75c45fc032402
+
                         
                         <thead>
                          
@@ -155,13 +154,13 @@
                                 <td><c:choose>
                                         <c:when test="${infRpt.estadoAsigna==2}">
                                             Sin Asignar
-<<<<<<< HEAD
+
                                         </c:when>
                                             <c:when test="${infRpt.estadoAsigna==1}">
-=======
+
                                     </c:when>
                                             <c:when test="${infRpt.rutRptLegal.estadoRptLegal==0}">
->>>>>>> 443fc395b887158412a57e7004b75c45fc032402
+
                                             No Vigente
                                             </c:when>
                                         <c:otherwise>
@@ -196,11 +195,7 @@
                         
                         
                     </table>
-<<<<<<< HEAD
-                  
-=======
 
->>>>>>> 443fc395b887158412a57e7004b75c45fc032402
                   </div>
                   
                 </div>
