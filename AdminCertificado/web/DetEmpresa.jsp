@@ -8,11 +8,10 @@
 </head>
 <body class="hold-transition sidebar-mini">
       <jsp:useBean id="empresas" class="cl.circuloverde.certificado.entidades.Empresa" scope="page"></jsp:useBean>
-<<<<<<< HEAD
-      <jsp:useBean id="rpt" class="cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa" scope="page"></jsp:useBean>
-=======
+
+
       <jsp:useBean id="rptsLegal" class="cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa" scope="page"></jsp:useBean>
->>>>>>> 21e97296691c8ab8f2b0045f8cd17621ac02b36c
+
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
@@ -60,7 +59,7 @@
       <div class="card">
         <div class="card-header">
 
-          <h3 class="card-title">Mantenedor de Clientes</h3>
+         
 
 
           
@@ -68,7 +67,7 @@
       <div class="container-fluid">
         <div class="row">
           <!-- left column -->
-          <div class="col-md-6">
+          <div class="col-md-4">
               
           <!-- /.Mantenedor de empresas --> 
             <div class="card card-primary">
@@ -128,7 +127,7 @@
           
           <!--/.col (left) -->
           <!-- right column -->
-          <div class="col-md-6">
+          <div class="col-md-8">
             <!-- Horizontal Form -->
             <div class="card card-info">
               <div class="card-header">
@@ -138,21 +137,9 @@
               <!-- form start -->
               
                 <div class="card-body">
-<<<<<<< HEAD
-                    <div class="form-group">
-                    <label  class="col-sm-2 control-label">Rut:</label>
-                    <c:out value="${rpt.rutRptLegal.rutRptLegal}"/>
-                    </div>
+
                     
-                    <div class="form-group">
-                    <label  class="col-sm-2 control-label">Nombre:</label>
-                    </div>
-                  
-                    <div class="form-group">
-                    <label  class="col-sm-2 control-label">Correo:</label>
-                    </div>
-=======
-                    <table>
+                    <table class="table">
                         
                         <thead>
                          
@@ -161,16 +148,17 @@
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Correo</th>
+                        <th></th>
                          
                         </thead>
                         <tbody>
                             <c:forEach items="${rpt}" var="infRpt">
                             <tr>
                                 <td><c:choose>
-                                    <c:when test="${infRpt.rutRptLegal.estadoRptLegal==2}">
+                                        <c:when test="${infRpt.estadoAsigna==2}">
                                             Sin Asignar
                                         </c:when>
-                                            <c:when test="${infRpt.rutRptLegal.estadoRptLegal==0}">
+                                            <c:when test="${infRpt.estadoAsigna==1}">
                                             No Vigente
                                         </c:when>
                                         <c:otherwise>
@@ -184,6 +172,19 @@
                                 <td><c:out value="${infRpt.rutRptLegal.apellRptLegal}"/></td>
                                                                
                                 <td><c:out value="${infRpt.rutRptLegal.correoRptLegal}"/></td>
+                                <td>
+                                    
+                                    <c:choose>
+                                        <c:when test="${infRpt.estadoAsigna==2}">
+                                            
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="#"><small class="badge badge-info">Editar</small></a>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    
+                                </td>
+                             
                                
                             </tr>
                             
@@ -192,15 +193,12 @@
                         
                         
                     </table>
->>>>>>> 21e97296691c8ab8f2b0045f8cd17621ac02b36c
+                  
                   </div>
                   
                 </div>
                 <!-- /.card-body -->
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-info">Sign in</button>
-                  <button type="submit" class="btn btn-default float-right">Cancel</button>
-                </div>
+              
                 <!-- /.card-footer -->
                 </div>
             <!-- /.card -->

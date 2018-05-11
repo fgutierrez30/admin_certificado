@@ -27,7 +27,7 @@ public class RptPerfEmpSessionBean {
     {
         List<RptlegalPerfilEmpresa> rpt= null;
     try{    
-    rpt=em.createNamedQuery("RptlegalPerfilEmpresa.rptXemp", RptlegalPerfilEmpresa.class).setParameter("rutRpt", rutEmpresa).getResultList();
+    rpt=em.createNamedQuery("RptlegalPerfilEmpresa.rptXemp", RptlegalPerfilEmpresa.class).setParameter("rutEmp", rutEmpresa).getResultList();
      }catch(Exception ex){
      rpt=null;
     }  
