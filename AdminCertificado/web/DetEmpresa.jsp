@@ -8,11 +8,11 @@
 </head>
 <body class="hold-transition sidebar-mini">
       <jsp:useBean id="empresas" class="cl.circuloverde.certificado.entidades.Empresa" scope="page"></jsp:useBean>
-<<<<<<< HEAD
+
       <jsp:useBean id="rpt" class="cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa" scope="page"></jsp:useBean>
-=======
+
       <jsp:useBean id="rptsLegal" class="cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa" scope="page"></jsp:useBean>
->>>>>>> 21e97296691c8ab8f2b0045f8cd17621ac02b36c
+
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
@@ -25,20 +25,9 @@
   
   <%@include file="master/menu.jsp" %>
   
-
-
-  
-  
   
   <%@include file="master/menu.jsp" %>
   
-  
-  
-  
-  
-  
-
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -138,20 +127,8 @@
               <!-- form start -->
               
                 <div class="card-body">
-<<<<<<< HEAD
-                    <div class="form-group">
-                    <label  class="col-sm-2 control-label">Rut:</label>
-                    <c:out value="${rpt.rutRptLegal.rutRptLegal}"/>
-                    </div>
-                    
-                    <div class="form-group">
-                    <label  class="col-sm-2 control-label">Nombre:</label>
-                    </div>
-                  
-                    <div class="form-group">
-                    <label  class="col-sm-2 control-label">Correo:</label>
-                    </div>
-=======
+
+
                     <table>
                         
                         <thead>
@@ -172,10 +149,10 @@
                                 <c:choose>
                                     <c:when test="${infRpt.rutRptLegal.estadoRptLegal==2}">
                                             Sin Asignar
-                                        </c:when>
+                                    </c:when>
                                             <c:when test="${infRpt.rutRptLegal.estadoRptLegal==0}">
                                             No Vigente
-                                        </c:when>
+                                            </c:when>
                                         <c:otherwise>
                                             Vigente
                                         </c:otherwise>
@@ -195,7 +172,7 @@
                         
                         
                     </table>
->>>>>>> 21e97296691c8ab8f2b0045f8cd17621ac02b36c
+
                   </div>
                   
                 </div>
@@ -205,7 +182,7 @@
                   <button type="submit" class="btn btn-default float-right">Cancel</button>
                 </div>
                 <!-- /.card-footer -->
-                </div>
+          </div>
             <!-- /.card -->
             <!-- general form elements disabled -->
            
@@ -214,12 +191,12 @@
           <!--/.col (right) -->
         </div>
         <!-- /.row -->
-      </div><!-- /.container-fluid -->
+      
     </section>
     <!-- /.content -->
  
          
-        </div>
+        
 
         <div class="card-body">
 
@@ -236,7 +213,7 @@
         <!-- /.card-footer-->
       </div>
       <!-- /.card -->
-
+      </div>
     </section>
     <!-- /.content -->
   </div>
