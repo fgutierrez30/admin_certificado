@@ -35,4 +35,16 @@ public class RptPerfEmpSessionBean {
     }
     
     
+     public List<RptlegalPerfilEmpresa> acceso(String rutEmpresa)
+    {
+       List<RptlegalPerfilEmpresa> rpt= null;
+    try{    
+    rpt=em.createNamedQuery("RptlegalPerfilEmpresa.permisos", RptlegalPerfilEmpresa.class).setParameter("rutEmp", rutEmpresa).getResultList();
+     }catch(Exception ex){
+     rpt=null;
+    }  
+    return rpt;
+    }
+    
+    
 }

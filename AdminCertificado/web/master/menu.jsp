@@ -4,7 +4,7 @@
 <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="home.jsp" class="brand-link">
+    <a href="Home.jsp" class="brand-link">
       
       <span class="brand-text font-weight-light">Certificados SII</span>
     </a>

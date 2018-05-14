@@ -13,7 +13,7 @@
       <jsp:useBean id="rpts" class="cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa" scope="page"></jsp:useBean>
 
 
-      <jsp:useBean id="rptsLegal" class="cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa" scope="page"></jsp:useBean>
+      <jsp:useBean id="users" class="cl.circuloverde.certificado.entidades.UsrPerfilEmpresa" scope="page"></jsp:useBean>
 
 <!-- Site wrapper -->
 <div class="wrapper">
@@ -79,7 +79,7 @@
                     <c:out value="${empresa.razonSocial}"/>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputFile">Estado</label>
+                    <label for="exampleInputFile">Estado:</label>
                     <c:choose>
                         <c:when test="${empresas.estadoEmp==0}">
                             VIGENTE
@@ -198,7 +198,91 @@
           </div>
             <!-- /.card -->
             <!-- general form elements disabled -->
-           
+             <div class="col-md-12">
+            <!-- Horizontal Form -->
+            <div class="card card-success">
+              <div class="card-header">
+                <h3 class="card-title">Usuarios y Permisos SII</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              
+                <div class="card-body table-responsive p-0">
+
+
+                    
+                    <table class="table table-hover">
+
+                        <thead>
+                        <th></th>
+                        <th>Nombre</th>
+                        
+                         
+                        </thead>
+                        <tbody>
+                            <c:forEach items="${rpt}" var="usr" >
+                            
+                                
+                            <tr>
+                                 
+                                <td><a href="#"><small class="badge badge-success">Editar</small></a></td>
+                                <td>${usr.rutRptLegal.nomRptLegal} ${usr.rutRptLegal.apellRptLegal}</td>
+                                
+                                <c:forEach items="${permisos}" var="per">
+                                    <c:choose>
+                                        <c:when test="${usr.rutRptLegal.rutRptLegal==per.rutRptLegal.rutRptLegal && per.estadoAsigna==0}"> 
+                                            <td align="center"><c:out value="${per.idPerfil.nomPerfil}"/></td>
+                                        </c:when>
+                                      
+                                    </c:choose>
+                                </c:forEach>
+                                    
+                                         
+                            </tr> 
+                                            
+                           
+                           
+                            </c:forEach>
+                            
+                                                        
+                            <c:forEach items="${usr}" var="usrCV">
+                            
+                                <tr>
+                                    
+                                  <td><a href="#"><small class="badge badge-success">Editar</small></a></td>
+                                  <td>${usrCV.rutUsrCv.nomUsrCv} ${usrCV.rutUsrCv.apellUsrCv}</td>
+                                   
+                                  <c:forEach items="${usrPermisos}" var="usrPermisosCV">
+                                      <c:choose>
+                                          
+                                          <c:when test="${usrCV.rutUsrCv.rutUsrCv==usrPermisosCV.rutUsrCv.rutUsrCv}">
+                                              <td align="center"><c:out value="${usrPermisosCV.idPerfil.nomPerfil}"/></td> 
+                                              
+                                          </c:when>
+                                          
+                                      </c:choose>
+                                      
+                                      
+                                  </c:forEach>
+                                  
+                                    
+                                </tr>
+                             
+                                
+                            </c:forEach>
+                            
+                        </tbody>   
+                        
+                        
+                    </table>
+
+                  </div>
+                  
+                </div>
+                <!-- /.card-body -->
+              
+                <!-- /.card-footer -->
+          </div>
             <!-- /.card -->
           </div>
           <!--/.col (right) -->

@@ -32,7 +32,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "usr_perfil_empresa", catalog = "certificado", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "UsrPerfilEmpresa.findAll", query = "SELECT u FROM UsrPerfilEmpresa u")
+    @NamedQuery(name = "UsrPerfilEmpresa.findUSRxEmpPer", query = "SELECT u FROM UsrPerfilEmpresa u WHERE u.rutEmpresa.rutEmpresa = :rutEmp")
+    ,@NamedQuery(name = "UsrPerfilEmpresa.findUSRxEmp", query = "SELECT u FROM UsrPerfilEmpresa u WHERE u.rutEmpresa.rutEmpresa = :rutEmp GROUP BY u.rutUsrCv.rutUsrCv")
+    ,@NamedQuery(name = "UsrPerfilEmpresa.findAll", query = "SELECT u FROM UsrPerfilEmpresa u")
     , @NamedQuery(name = "UsrPerfilEmpresa.findByIdUsrPerfilEmpresa", query = "SELECT u FROM UsrPerfilEmpresa u WHERE u.idUsrPerfilEmpresa = :idUsrPerfilEmpresa")
     , @NamedQuery(name = "UsrPerfilEmpresa.findByUsrSolicita", query = "SELECT u FROM UsrPerfilEmpresa u WHERE u.usrSolicita = :usrSolicita")
     , @NamedQuery(name = "UsrPerfilEmpresa.findByFechaSolicita", query = "SELECT u FROM UsrPerfilEmpresa u WHERE u.fechaSolicita = :fechaSolicita")})
