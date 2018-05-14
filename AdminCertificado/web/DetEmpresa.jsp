@@ -10,11 +10,9 @@
       <jsp:useBean id="empresas" class="cl.circuloverde.certificado.entidades.Empresa" scope="page"></jsp:useBean>
 
 
-<<<<<<< HEAD
-      <jsp:useBean id="rpt" class="cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa" scope="page"></jsp:useBean>
-=======
+
       <jsp:useBean id="rpts" class="cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa" scope="page"></jsp:useBean>
->>>>>>> b1691ac32c4c0fda55bae1ccdc434cd1d3129b16
+
 
 
       <jsp:useBean id="rptsLegal" class="cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa" scope="page"></jsp:useBean>
@@ -85,7 +83,7 @@
                   <div class="form-group">
                     <label for="exampleInputFile">Estado</label>
                     <c:choose>
-                        <c:when test="${empresas.estadoEmp==0}">
+                        <c:when test="${empresa.estadoEmp==0}">
                             VIGENTE
                         </c:when>    
                         <c:otherwise>
@@ -137,15 +135,7 @@
 
                     
                     <table class="table">
-<<<<<<< HEAD
 
-
-                    <table>
-
-                        
-=======
-
->>>>>>> b1691ac32c4c0fda55bae1ccdc434cd1d3129b16
                         <thead>
                          
                         <th>Estado</th>
@@ -165,19 +155,14 @@
 
                                         </c:when>
                                             <c:when test="${infRpt.estadoAsigna==1}">
-<<<<<<< HEAD
+                                   No Vigente
 
                                     </c:when>
-                                            <c:when test="${infRpt.rutRptLegal.estadoRptLegal==0}">
+                                            <c:when test="${infRpt.estadoAsigna==0}">
 
-                                            No Vigente
-=======
-                                                No Vigente
-                                             </c:when>
-                                            <c:when test="${infRpt.rutRptLegal.estadoRptLegal==0}">
                                                 Vigente
->>>>>>> b1691ac32c4c0fda55bae1ccdc434cd1d3129b16
-                                            </c:when>
+                                             </c:when>
+                                           
                                        
                                  </c:choose>
                                 
