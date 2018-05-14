@@ -10,10 +10,16 @@
       <jsp:useBean id="empresas" class="cl.circuloverde.certificado.entidades.Empresa" scope="page"></jsp:useBean>
 
 
+
       <jsp:useBean id="rpts" class="cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa" scope="page"></jsp:useBean>
 
 
+<<<<<<< HEAD
       <jsp:useBean id="users" class="cl.circuloverde.certificado.entidades.UsrPerfilEmpresa" scope="page"></jsp:useBean>
+=======
+
+      <jsp:useBean id="rptsLegal" class="cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa" scope="page"></jsp:useBean>
+>>>>>>> 6a03a5116125860594aeb3617d3983f059cb4c30
 
 <!-- Site wrapper -->
 <div class="wrapper">
@@ -81,7 +87,7 @@
                   <div class="form-group">
                     <label for="exampleInputFile">Estado:</label>
                     <c:choose>
-                        <c:when test="${empresas.estadoEmp==0}">
+                        <c:when test="${empresa.estadoEmp==0}">
                             VIGENTE
                         </c:when>    
                         <c:otherwise>
@@ -153,11 +159,14 @@
 
                                         </c:when>
                                             <c:when test="${infRpt.estadoAsigna==1}">
-                                                No Vigente
-                                             </c:when>
-                                            <c:when test="${infRpt.rutRptLegal.estadoRptLegal==0}">
+                                   No Vigente
+
+                                    </c:when>
+                                            <c:when test="${infRpt.estadoAsigna==0}">
+
                                                 Vigente
-                                            </c:when>
+                                             </c:when>
+                                           
                                        
                                  </c:choose>
                                 
