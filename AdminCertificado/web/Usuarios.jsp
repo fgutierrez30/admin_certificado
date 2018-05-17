@@ -7,8 +7,8 @@
  <%@include file="master/head.jsp" %>
 </head>
 <body class="hold-transition sidebar-mini">
-    <jsp:include page="./RepresentanteVigente" flush="true"/>
-   <jsp:useBean id="representantes" class="cl.circuloverde.certificado.entidades.RptLegal" scope="page"></jsp:useBean>
+    <jsp:include page="./usrServlet" flush="true"/>
+    <jsp:useBean id="usersCV" class="cl.circuloverde.certificado.entidades.UsuarioCv" scope="page"></jsp:useBean>
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
@@ -36,7 +36,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Repesentantes Legales</h1>
+            <h1>Usuarios Circulo Verde</h1>
           </div>
           
         </div>
@@ -49,7 +49,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Mantenedor de Representales Legales</h3>
+          <h3 class="card-title">Mantenedor de Usuarios</h3>
 
          
         </div>
@@ -61,32 +61,30 @@
                     <th>Rut</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
-                    <th>Correo</th>
                     <th>Estado</th>
                     <th></th>
               </thead>
               
               <tbody>
-                  <c:forEach items="${rpts}" var="rpt">
+                  <c:forEach items="${usuariosCV}" var="usr">
                   <tr>
-                      <td><c:out value="${rpt.rutRptLegal}"/></td>
-                      <td><c:out value="${rpt.nomRptLegal}"/></td>
-                      <td><c:out value="${rpt.apellRptLegal}"/></td>
-                      <td><c:out value="${rpt.correoRptLegal}"/></td>
+                      <td><c:out value="${usr.rutUsrCv}"/></td>
+                      <td><c:out value="${usr.nomUsrCv}"/></td>
+                      <td><c:out value="${usr.apellUsrCv}"/></td>
+                      <td>
                       <c:choose>
-                          <c:when test="${rpt.estadoRptLegal==0}">
-                             <td>VIGENTE</td> 
+                          <c:when test="${usr.estadoUsrCv==0}">
+                              Vigente
                           </c:when>
-                             <c:otherwise>
-                                <td>NO VIGENTE</td>  
-                                 
-                             </c:otherwise>
+                          <c:otherwise>
+                              Bloqueado
+                          </c:otherwise>
                       
                       </c:choose>
-                      <td align="center"><a href="./detRepresentante?rut_rpt=${rpt.rutRptLegal}"><small class="badge badge-danger"> Ver Detalle</small></a> </td>
-                    
+                      </td>
+                      <td align="center"><a href="./detUsr?rut_usr=${usr.rutUsrCv}"><small class="badge badge-danger"> Ver Detalle</small></a> </td>
                   </tr>
-                  </c:forEach>               
+                 </c:forEach>                
               </tbody>
                 
             </table> 
