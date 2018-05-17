@@ -14,12 +14,12 @@
       <jsp:useBean id="rpts" class="cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa" scope="page"></jsp:useBean>
 
 
-<<<<<<< HEAD
+
       <jsp:useBean id="users" class="cl.circuloverde.certificado.entidades.UsrPerfilEmpresa" scope="page"></jsp:useBean>
-=======
+
 
       <jsp:useBean id="rptsLegal" class="cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa" scope="page"></jsp:useBean>
->>>>>>> 6a03a5116125860594aeb3617d3983f059cb4c30
+
 
 <!-- Site wrapper -->
 <div class="wrapper">
@@ -225,6 +225,7 @@
                         <thead>
                         <th></th>
                         <th>Nombre</th>
+                        <th colspan="6">Permisos</th>
                         
                          
                         </thead>

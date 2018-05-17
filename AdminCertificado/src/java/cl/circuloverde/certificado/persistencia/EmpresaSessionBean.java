@@ -30,5 +30,20 @@ public class EmpresaSessionBean {
       return em.createNamedQuery("Empresa.findByRutEmpresa", Empresa.class).setParameter("rutEmpresa", rut).getSingleResult();
     }
    
+    
+    public List<Empresa> empresaXHolding (int id_holding)
+    {
+        List<Empresa> empresa=null;
+        
+        try{
+            empresa=em.createNamedQuery("Empresa.findByHolding",Empresa.class).setParameter("id_holding", id_holding).getResultList();
+            
+        }catch(Exception ex)
+        {
+            return empresa;
+        }
+        
+        return empresa;
+    }
 
 }

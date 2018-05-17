@@ -42,4 +42,38 @@ public class UsrPerfilEmpresaSessionBean {
         }
         return usr;
     }
+      
+      
+      public List<UsrPerfilEmpresa> usrEmpresas(String rutUsr)
+      {
+          List<UsrPerfilEmpresa> usrEmpresa=null;
+          try{
+          usrEmpresa=em.createNamedQuery("UsrPerfilEmpresa.findEmpxUsr", UsrPerfilEmpresa.class).setParameter("rutUsr", rutUsr).getResultList();
+          }catch(Exception ex)
+          {
+              usrEmpresa=null;
+          }
+          
+          return usrEmpresa;
+      }
+      
+      
+      
+         public List<UsrPerfilEmpresa> empPermisos(String rut_usr)
+    {
+        List<UsrPerfilEmpresa> usr=null;
+        try{
+          usr=em.createNamedQuery("UsrPerfilEmpresa.findEmpxUsrPer", UsrPerfilEmpresa.class).setParameter("rutUsr", rut_usr).getResultList();  
+        }catch(Exception ex)
+        {
+            usr=null;
+        }
+        return usr;
+    }
+         
+         
+         public void asignaEmpresa(UsrPerfilEmpresa permiso)
+         {
+             em.persist(permiso);
+         }
 }

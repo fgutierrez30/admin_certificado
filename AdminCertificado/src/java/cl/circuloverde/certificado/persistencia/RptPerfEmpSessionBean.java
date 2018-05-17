@@ -5,12 +5,13 @@
  */
 package cl.circuloverde.certificado.persistencia;
 
+
 import cl.circuloverde.certificado.entidades.RptlegalPerfilEmpresa;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.jboss.weld.util.collections.ListView;
+
 
 /**
  *
@@ -45,6 +46,9 @@ public class RptPerfEmpSessionBean {
     }  
     return rpt;
     }
+     
+     
+   
     
     
 }

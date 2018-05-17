@@ -5,10 +5,10 @@
  */
 package cl.circuloverde.certificado.presentacion;
 
-
-import cl.circuloverde.certificado.entidades.RptLegal;
-import cl.circuloverde.certificado.persistencia.RptLegalSessionBean;
+import cl.circuloverde.certificado.entidades.UsuarioCv;
+import cl.circuloverde.certificado.persistencia.UsuarioSessionBean;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -18,34 +18,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author dsantander
- */
-@WebServlet(name = "RepresentanteServlet", urlPatterns = {"/RepresentanteServlet","/RepresentanteVigente"})
-public class RepresentanteServlet extends HttpServlet {
+
+@WebServlet(name = "UsuarioServlet", urlPatterns = {"/UsuarioServlet","/usrServlet"})
+public class UsuarioServlet extends HttpServlet {
+
+    @EJB
+    private UsuarioSessionBean objUsuarioSessionBean;
+  
 
     
-  @EJB
-  private RptLegalSessionBean objRptLegalSessionBean;
- 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-               
-                 HttpSession sesion=request.getSession();
-                 List<RptLegal> rpts=this.objRptLegalSessionBean.rptsLegal();
-                 sesion.setAttribute("rpts", rpts);
-       
+        
+        HttpSession sesion=request.getSession();
+        List<UsuarioCv> users=this.objUsuarioSessionBean.listarUsuarios();
+        sesion.setAttribute("usuariosCV", users);
         
     }
 
+   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    
+       
     }
 
    
+ 
+
 }
