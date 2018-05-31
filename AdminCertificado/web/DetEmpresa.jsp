@@ -6,6 +6,9 @@
   
  <%@include file="master/head.jsp" %>
 </head>
+
+
+
 <body class="hold-transition sidebar-mini">
       <jsp:useBean id="empresas" class="cl.circuloverde.certificado.entidades.Empresa" scope="page"></jsp:useBean>
 
@@ -119,6 +122,77 @@
                     <button type="button" class="btn btn-primary" id="editEmp" data-toggle="modal" data-target="#edita-modal" data-id="${empresa.rutEmpresa}">Modificar</button>
                 </div>
               
+                
+                <!-- pop up -->
+                <div class="Container" style="margin-top: 100px;"  >
+                    <button class="btn btn-info" data-toggle="modal" data-target="#miventana">
+                     Abrir Ventana
+                    </button>                
+                </div>
+                
+                
+                <div class="modal fade bd-example-modal-lg" id="miventana" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                   <div class="modal-dialog modal-lg" role="document"> 
+                       <div class="modal-content"> 
+                           <div class="modal-header">     
+                               <table class="table">     
+                        <thead>
+                         
+                        <th>Estado</th>
+                        <th>Rut</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Correo</th>
+                        <th></th>
+                         
+                        </thead>
+                 
+                            <tbody>
+                                    
+                            <c:forEach items="${rpt}" var="infRpt">
+                            <tr>
+                                <td><c:choose>
+                                        <c:when test="${infRpt.estadoAsigna==2}">
+                                                Sin Asignar
+                                            </c:when>
+                                            <c:when test="${infRpt.estadoAsigna==1}">
+                                                No Vigente
+                                            </c:when>
+                                            <c:when test="${infRpt.estadoAsigna==0}">
+                                                Vigente
+                                            </c:when>
+                                    </c:choose>                             
+                                </td>
+                                <td> <c:out value="${infRpt.rutRptLegal.rutRptLegal}"/> </td>
+                                <td><input type ="text" value="${infRpt.rutRptLegal.nomRptLegal}"/></td>
+                                <td><input type ="text" value="${infRpt.rutRptLegal.apellRptLegal}"/></td>                               
+                                <td><input type ="text" value="${infRpt.rutRptLegal.correoRptLegal}"/></td> 
+                            </tr>
+                           </c:forEach> 
+                            
+                            
+                            
+                            </tbody>
+                       </table>
+
+                               
+                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                               
+                           </div>  
+                                
+                                <div class="modal-body">
+                                    <p class="lead text-xs-center">Modificar usuarios</p>
+                                        <div class="lead text-xs-center">
+                                            <a class="btn btn-info" href="#">Modificar</a>
+                                        </div>
+                                </div>
+                       </div>
+                   </div>
+                    
+                </div>
+                <!-- fin pop up -->
+                
+                
             </div>
           </div>
           <!-- /.Mantenedor de empresas -->
