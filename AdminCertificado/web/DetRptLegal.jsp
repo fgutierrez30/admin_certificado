@@ -1,4 +1,6 @@
+<jsp:useBean id="now" class="java.util.Date"/>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,20 +63,20 @@
               <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Rut:</label>
-                    <c:out value=""/>
+                    <c:out value="${rpt.rutRptLegal}"/>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Nombre:</label>
-                    <c:out value=""/>
+                    <c:out value="${rpt.nomRptLegal} ${rpt.apellRptLegal}"/>
                   </div>
                  <div class="form-group">
                     <label for="exampleInputPassword1">Correo:</label>
-                    <c:out value=""/>
+                    <c:out value="${rpt.correoRptLegal}"/>
                   </div>
                    <div class="form-group">
                     <label for="exampleInputFile">Estado:</label>
                     <c:choose>
-                        <c:when test="${usuario.estadoUsrCv==0}">
+                        <c:when test="${rpt.estadoRptLegal==0}">
                             Vigente
                         </c:when>    
                         <c:otherwise>
@@ -85,7 +87,7 @@
                 </div>
                 
                 <div class="card-footer">
-                    <button type="button" class="btn btn-primary">Modificar</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edita-modal" data-id="${rpt.rutRptLegal}" id="editaRpt">Modificar</button>
                 </div>
                 
                 
@@ -115,21 +117,28 @@
                       <th>Vcto</th>
                       <th>Clave</th>
                       <th>Estado</th>
-                      <th></th>
-                          
+                                                
                       </thead>
                       <tbody>
-                          
+                          <c:forEach items="${firma}" var="fir">
                           <tr>
                               
-                              <td>01-01-2018</td>
-                              <td>01-01-2019</td>
-                              <td>123456</td>
-                              <td>Vigente</td>
-                              <td>Editar</td>
+                              <td><fmt:formatDate pattern="dd-MM-yyyy" value="${fir.fechaCompra}"/></td>
+                              <td><fmt:formatDate pattern="dd-MM-yyyy" value="${fir.fechaVcto}"/></td>
+                              <td><c:out value="${fir.claveInstalacion}"/></td>
+                              <c:choose>
+                                  <c:when test="${fir.fechaVcto<now}">
+                                     <td>Vencida</td>  
+                                  </c:when>
                               
+                                  <c:otherwise>
+                                     <td>Vigente</td> 
+                                  </c:otherwise>
+                              
+                              </c:choose>
+                                                            
                           </tr>
-                          
+                         </c:forEach> 
                           
                       </tbody>
                       
@@ -138,7 +147,7 @@
                 </div>
                 
                 <div class="card-footer">
-                    <button type="button" class="btn btn-warning">Agregar Firma</button>
+                    <button data-toggle="modal" data-target="#firma-modal" data-id="${rpt.rutRptLegal}" id="getFirma" class="btn btn-warning">Agregar Firma</button>
                 </div>
                 
                 
@@ -154,15 +163,14 @@
                
                   
                   
-                 <div class="card">
+                
               
               <div class="card-body col-md-2" >
-                  <button data-toggle="modal" data-target="#view-modal" data-id="${usuario.rutUsrCv}" id="getUsr" class="btn btn-sm btn-danger">Asignar Empresa</button>
+                  <button data-toggle="modal" data-target="#view-modal" data-id="${rpt.rutRptLegal}" id="getUsr" class="btn btn-sm btn-danger">Asignar Empresa</button>
                            
               </div>
                
-                  
-            </div>
+            
                   
                   
             <!-- /.card -->
@@ -199,7 +207,7 @@
                         
                         </thead>
                         <tbody>
-                            <c:forEach items="${empresasUsr}" var="emp">
+                            <c:forEach items="${empXRpt}" var="emp">
                             <tr>
                                 <c:choose>
                                     <c:when test="${emp.rutEmpresa.razonSocial==''}">
@@ -209,12 +217,12 @@
                                 <td><a href="#"><small class="badge badge-success">Editar</small></a></td>
                                 <td><c:out value="${emp.rutEmpresa.razonSocial}"/></td>
                                 
-                                <c:forEach items="${empPermisos}" var="permisos">
+                                <c:forEach items="${permisos}" var="per">
                                     <c:choose>
                                         
-                                        <c:when test="${emp.rutEmpresa.rutEmpresa==permisos.rutEmpresa.rutEmpresa}">
+                                        <c:when test="${emp.rutEmpresa.rutEmpresa==per.rutEmpresa.rutEmpresa}">
                                             
-                                            <td align="center"><c:out value="${permisos.idPerfil.nomPerfil}"/></td> 
+                                            <td align="center"><c:out value="${per.idPerfil.nomPerfil}"/></td> 
                                             
                                         </c:when>
                                         
@@ -307,6 +315,74 @@
 </div> 
 
 
+
+
+
+  <div id="firma-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog" role="document"> 
+            <div class="modal-content">  
+
+               
+
+               <div class="modal-body">                     
+                  <div id="modal-loader1" style="display: none; text-align: center;">
+
+
+
+
+                      <!-- ajax loader -->
+                  <img src="ajax-loader.gif">
+                  </div>
+
+                  <!-- mysql data will be load here -->                          
+                  <div id="dynamic-content1"></div>
+               </div> 
+
+
+           </div> 
+    </div>
+</div> 
+
+
+
+
+
+ <div id="edita-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog" role="document"> 
+            <div class="modal-content">  
+
+               
+
+               <div class="modal-body">                     
+                  <div id="modal-loader2" style="display: none; text-align: center;">
+
+
+
+
+                      <!-- ajax loader -->
+                  <img src="ajax-loader.gif">
+                  </div>
+
+                  <!-- mysql data will be load here -->                          
+                  <div id="dynamic-content2"></div>
+               </div> 
+
+
+           </div> 
+    </div>
+</div> 
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
 $(document).ready(function(){
 	
@@ -317,12 +393,12 @@ $(document).ready(function(){
 		var uid = $(this).data('id');   // it will get id of clicked row
 		
 		$('#dynamic-content').html(''); // leave it blank before ajax call
-		$('#modal-loader').show();      // load ajax loader
+		$('#modal-loader1').show();      // load ajax loader
 		
 		$.ajax({
-			url: './asignaEmpresa',
+			url: './asigEmpRpt',
 			type: 'GET',
-			data: 'rut_usr='+uid,
+			data: 'rut_rpt='+uid,
 			dataType: 'html'
 		})
 		.done(function(data){
@@ -334,6 +410,83 @@ $(document).ready(function(){
 		.fail(function(){
 			$('#dynamic-content').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please try again...');
 			$('#modal-loader').hide();
+		});
+		
+	});
+	
+});
+
+</script>
+
+
+
+
+<script>
+$(document).ready(function(){
+	
+	$(document).on('click', '#getFirma', function(e){
+		
+		e.preventDefault();
+		
+		var uid = $(this).data('id');   // it will get id of clicked row
+		
+		$('#dynamic-content1').html(''); // leave it blank before ajax call
+		$('#modal-loader1').show();      // load ajax loader
+		
+		$.ajax({
+			url: './regFirma',
+			type: 'GET',
+			data: 'rut_rpt='+uid,
+			dataType: 'html'
+		})
+		.done(function(data){
+			console.log(data);	
+			$('#dynamic-content1').html('');    
+			$('#dynamic-content1').html(data); // load response 
+			$('#modal-loader1').hide();		  // hide ajax loader	
+		})
+		.fail(function(){
+			$('#dynamic-content1').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please try again...');
+			$('#modal-loader1').hide();
+		});
+		
+	});
+	
+});
+
+</script>
+
+
+
+
+
+<script>
+$(document).ready(function(){
+	
+	$(document).on('click', '#editaRpt', function(e){
+		
+		e.preventDefault();
+		
+		var uid = $(this).data('id');   // it will get id of clicked row
+		
+		$('#dynamic-content2').html(''); // leave it blank before ajax call
+		$('#modal-loader2').show();      // load ajax loader
+		
+		$.ajax({
+			url: './editaRpt',
+			type: 'GET',
+			data: 'rut_rpt='+uid,
+			dataType: 'html'
+		})
+		.done(function(data){
+			console.log(data);	
+			$('#dynamic-content2').html('');    
+			$('#dynamic-content2').html(data); // load response 
+			$('#modal-loader2').hide();		  // hide ajax loader	
+		})
+		.fail(function(){
+			$('#dynamic-content2').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please try again...');
+			$('#modal-loader2').hide();
 		});
 		
 	});

@@ -40,5 +40,26 @@ public class RptLegalSessionBean {
          return rpts;
      }
     
+      
+      public RptLegal rptxRut(String rut)
+      {
+          return em.createNamedQuery("RptLegal.findByRutRptLegal", RptLegal.class).setParameter("rutRptLegal", rut).getSingleResult();
+      }
     
+      
+      public void actualizaRpt(RptLegal rpt)
+      {
+        RptLegal rptAct=em.find(RptLegal.class, rpt.getRutRptLegal());
+        rptAct.setNomRptLegal(rpt.getNomRptLegal());
+        rptAct.setApellRptLegal(rpt.getApellRptLegal());
+        rptAct.setCorreoRptLegal(rpt.getCorreoRptLegal());
+        rptAct.setEstadoRptLegal(rpt.getEstadoRptLegal());
+        em.merge(rptAct);
+      }
+      
+      
+      public void crearRpt(RptLegal rpt)
+      {
+          em.persist(rpt);
+      }
 }

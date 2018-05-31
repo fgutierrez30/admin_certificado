@@ -45,5 +45,17 @@ public class EmpresaSessionBean {
         
         return empresa;
     }
+    
+    
+    public void actualizaEmpresa(Empresa emp)
+    {
+        em.merge(emp);
+    }
+    
+    
+    public void creaEmpresa(Empresa emp)
+    {
+        em.persist(emp);
+    }
 
 }

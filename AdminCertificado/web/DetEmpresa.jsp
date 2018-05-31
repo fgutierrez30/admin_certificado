@@ -105,7 +105,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Mail Administrador:</label>
-                    
+                    <c:out value="${empresa.mailAdm}"/>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Holding:</label>
@@ -116,7 +116,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                    <button type="button" class="btn btn-primary">Modificar</button>
+                    <button type="button" class="btn btn-primary" id="editEmp" data-toggle="modal" data-target="#edita-modal" data-id="${empresa.rutEmpresa}">Modificar</button>
                 </div>
               
             </div>
@@ -178,14 +178,7 @@
                                 <td><c:out value="${infRpt.rutRptLegal.correoRptLegal}"/></td>
                                 <td>
                                     
-                                    <c:choose>
-                                        <c:when test="${infRpt.estadoAsigna==2}">
-                                            
-                                        </c:when>
-                                        <c:otherwise>
-                                            <a href="#"><small class="badge badge-info">Editar</small></a>
-                                        </c:otherwise>
-                                    </c:choose>
+                                   
                                     
                                 </td>
                              
@@ -324,6 +317,74 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
+
+
+<div id="edita-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog" role="document"> 
+            <div class="modal-content">  
+
+               
+
+               <div class="modal-body">                     
+                  <div id="modal-loader" style="display: none; text-align: center;">
+
+
+
+
+                      <!-- ajax loader -->
+                  <img src="ajax-loader.gif">
+                  </div>
+
+                  <!-- mysql data will be load here -->                          
+                  <div id="dynamic-content"></div>
+               </div> 
+
+
+           </div> 
+    </div>
+</div> 
+
+
+
+
+
+
+<script>
+$(document).ready(function(){
+	
+	$(document).on('click', '#editEmp', function(e){
+		
+		e.preventDefault();
+		
+		var uid = $(this).data('id');   // it will get id of clicked row
+		
+		$('#dynamic-content').html(''); // leave it blank before ajax call
+		$('#modal-loader1').show();      // load ajax loader
+		
+		$.ajax({
+			url: './editaEmp',
+			type: 'GET',
+			data: 'rut_emp='+uid,
+			dataType: 'html'
+		})
+		.done(function(data){
+			console.log(data);	
+			$('#dynamic-content').html('');    
+			$('#dynamic-content').html(data); // load response 
+			$('#modal-loader').hide();		  // hide ajax loader	
+		})
+		.fail(function(){
+			$('#dynamic-content').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please try again...');
+			$('#modal-loader').hide();
+		});
+		
+	});
+	
+});
+
+</script>
+
+
 
 
 </body>

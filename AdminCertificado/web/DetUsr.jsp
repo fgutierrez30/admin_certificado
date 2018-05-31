@@ -8,7 +8,7 @@
 </head>
 <body class="hold-transition sidebar-mini">
     
-      
+    
       <jsp:useBean id="usuarios" class="cl.circuloverde.certificado.entidades.UsuarioCv" scope="page"></jsp:useBean>
       <jsp:useBean id="users" class="cl.circuloverde.certificado.entidades.UsrPerfilEmpresa" scope="page"></jsp:useBean>
       
@@ -85,7 +85,7 @@
                 </div>
                 
                 <div class="card-footer">
-                    <button type="button" class="btn btn-primary">Modificar</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edita-modal" data-id="${usuario.rutUsrCv}" id="editaUsr">Modificar</button>
                 </div>
                 
                 
@@ -99,10 +99,8 @@
                
                   <div class="col-md-4"> 
                   
-                  <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Acciones</h3>
-              </div>
+                  
+              
               <div class="card-body">
                   <button data-toggle="modal" data-target="#view-modal" data-id="${usuario.rutUsrCv}" id="getUsr" class="btn btn-sm btn-danger">Asignar Empresa</button>
                            
@@ -114,7 +112,7 @@
                       <c:remove var="msj"/>
                 </c:if> 
                   
-            </div>
+           
                   </div>
                   
             <!-- /.card -->
@@ -259,6 +257,38 @@
 </div> 
 
 
+<div id="edita-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog" role="document"> 
+            <div class="modal-content">  
+
+               
+
+               <div class="modal-body">                     
+                  <div id="modal-loader2" style="display: none; text-align: center;">
+
+
+
+
+                      <!-- ajax loader -->
+                  <img src="ajax-loader.gif">
+                  </div>
+
+                  <!-- mysql data will be load here -->                          
+                  <div id="dynamic-content2"></div>
+               </div> 
+
+
+           </div> 
+    </div>
+</div> 
+
+
+
+
+
+
+
+
 <script>
 $(document).ready(function(){
 	
@@ -286,6 +316,43 @@ $(document).ready(function(){
 		.fail(function(){
 			$('#dynamic-content').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please try again...');
 			$('#modal-loader').hide();
+		});
+		
+	});
+	
+});
+
+</script>
+
+
+
+<script>
+$(document).ready(function(){
+	
+	$(document).on('click', '#editaUsr', function(e){
+		
+		e.preventDefault();
+		
+		var uid = $(this).data('id');   // it will get id of clicked row
+		
+		$('#dynamic-content2').html(''); // leave it blank before ajax call
+		$('#modal-loader2').show();      // load ajax loader
+		
+		$.ajax({
+			url: './editaUsr',
+			type: 'GET',
+			data: 'rut_usr='+uid,
+			dataType: 'html'
+		})
+		.done(function(data){
+			console.log(data);	
+			$('#dynamic-content2').html('');    
+			$('#dynamic-content2').html(data); // load response 
+			$('#modal-loader2').hide();		  // hide ajax loader	
+		})
+		.fail(function(){
+			$('#dynamic-content2').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please try again...');
+			$('#modal-loader2').hide();
 		});
 		
 	});

@@ -32,7 +32,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "firma_electronica", catalog = "certificado", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "FirmaElectronica.findAll", query = "SELECT f FROM FirmaElectronica f")
+    @NamedQuery(name = "FirmaElectronica.findByRut", query = "SELECT f FROM FirmaElectronica f WHERE f.rutRptLegal.rutRptLegal = :rutRpt")
+    ,@NamedQuery(name = "FirmaElectronica.findAll", query = "SELECT f FROM FirmaElectronica f")
     , @NamedQuery(name = "FirmaElectronica.findByIdFirma", query = "SELECT f FROM FirmaElectronica f WHERE f.idFirma = :idFirma")
     , @NamedQuery(name = "FirmaElectronica.findByFechaCompra", query = "SELECT f FROM FirmaElectronica f WHERE f.fechaCompra = :fechaCompra")
     , @NamedQuery(name = "FirmaElectronica.findByFechaVcto", query = "SELECT f FROM FirmaElectronica f WHERE f.fechaVcto = :fechaVcto")

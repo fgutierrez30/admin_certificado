@@ -49,9 +49,12 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Mantenedor de Clientes</h3>
-
-         
+          <h3 class="card-title">Mantenedor de Clientes  <div align="right">
+          <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#view-modal"  id="getEmp" >Agregar Empresa</button>
+          <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#hdl-modal"  id="getHdl" >Crear Holding</button>
+          </div></h3>
+            
+                    
         </div>
         <div class="card-body">
           
@@ -130,6 +133,133 @@
     
 </script>
 <!-- jQuery -->
+
+<div id="view-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog" role="document"> 
+            <div class="modal-content">  
+
+               
+
+               <div class="modal-body">                     
+                  <div id="modal-loader" style="display: none; text-align: center;">
+
+
+
+
+                      <!-- ajax loader -->
+                  <img src="ajax-loader.gif">
+                  </div>
+
+                  <!-- mysql data will be load here -->                          
+                  <div id="dynamic-content"></div>
+               </div> 
+
+
+           </div> 
+    </div>
+</div> 
+
+
+<div id="hdl-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog" role="document"> 
+            <div class="modal-content">  
+
+               
+
+               <div class="modal-body">                     
+                  <div id="modal-loader1" style="display: none; text-align: center;">
+
+
+
+
+                      <!-- ajax loader -->
+                  <img src="ajax-loader.gif">
+                  </div>
+
+                  <!-- mysql data will be load here -->                          
+                  <div id="dynamic-content1"></div>
+               </div> 
+
+
+           </div> 
+    </div>
+</div> 
+
+
+
+
+<script>
+$(document).ready(function(){
+	
+	$(document).on('click', '#getEmp', function(e){
+		
+		e.preventDefault();
+		
+		
+		
+		$('#dynamic-content').html(''); // leave it blank before ajax call
+		$('#modal-loader').show();      // load ajax loader
+		
+		$.ajax({
+			url: './nvaEmpresa',
+			type: 'GET',
+			dataType: 'html'
+		})
+		.done(function(data){
+			console.log(data);	
+			$('#dynamic-content').html('');    
+			$('#dynamic-content').html(data); // load response 
+			$('#modal-loader').hide();		  // hide ajax loader	
+		})
+		.fail(function(){
+			$('#dynamic-content').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please try again...');
+			$('#modal-loader').hide();
+		});
+		
+	});
+	
+});
+
+</script>
+
+
+
+<script>
+$(document).ready(function(){
+	
+	$(document).on('click', '#getHdl', function(e){
+		
+		e.preventDefault();
+		
+		
+		
+		$('#dynamic-content1').html(''); // leave it blank before ajax call
+		$('#modal-loader1').show();      // load ajax loader
+		
+		$.ajax({
+			url: './hdlServlet',
+			type: 'GET',
+			dataType: 'html'
+		})
+		.done(function(data){
+			console.log(data);	
+			$('#dynamic-content1').html('');    
+			$('#dynamic-content1').html(data); // load response 
+			$('#modal-loader1').hide();		  // hide ajax loader	
+		})
+		.fail(function(){
+			$('#dynamic-content1').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please try again...');
+			$('#modal-loader1').hide();
+		});
+		
+	});
+	
+});
+
+</script>
+
+
+
 
 </body>
 </html>

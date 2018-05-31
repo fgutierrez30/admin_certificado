@@ -49,9 +49,11 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Mantenedor de Usuarios</h3>
-
-         
+           
+          <h3 class="card-title">Mantenedor de Usuarios  <div align="right">
+          <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#view-modal"  id="getUsr" >Agregar Usuario</button>
+          </div></h3>
+          
         </div>
         <div class="card-body">
           
@@ -113,6 +115,37 @@
 </div>
 <!-- ./wrapper -->
 
+
+  <div id="view-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog" role="document"> 
+            <div class="modal-content">  
+
+               
+
+               <div class="modal-body">                     
+                  <div id="modal-loader" style="display: none; text-align: center;">
+
+
+
+
+                      <!-- ajax loader -->
+                  <img src="ajax-loader.gif">
+                  </div>
+
+                  <!-- mysql data will be load here -->                          
+                  <div id="dynamic-content"></div>
+               </div> 
+
+
+           </div> 
+    </div>
+</div> 
+
+
+
+
+
+
  <script>
     
     $(document).ready( function () {
@@ -140,6 +173,45 @@
     
 </script>
 <!-- jQuery -->
+
+
+
+
+
+<script>
+$(document).ready(function(){
+	
+	$(document).on('click', '#getUsr', function(e){
+		
+		e.preventDefault();
+		
+		var uid = $(this).data('id');   // it will get id of clicked row
+		
+		$('#dynamic-content').html(''); // leave it blank before ajax call
+		$('#modal-loader1').show();      // load ajax loader
+		
+		$.ajax({
+			url: './nvoUsr',
+			type: 'GET',
+			dataType: 'html'
+		})
+		.done(function(data){
+			console.log(data);	
+			$('#dynamic-content').html('');    
+			$('#dynamic-content').html(data); // load response 
+			$('#modal-loader').hide();		  // hide ajax loader	
+		})
+		.fail(function(){
+			$('#dynamic-content').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please try again...');
+			$('#modal-loader').hide();
+		});
+		
+	});
+	
+});
+
+</script>
+
 
 </body>
 </html>

@@ -49,6 +49,37 @@ public class RptPerfEmpSessionBean {
      
      
    
+     
+     public List<RptlegalPerfilEmpresa> empRpt(String rutRpt)
+    {
+        List<RptlegalPerfilEmpresa> rpt= null;
+    try{    
+    rpt=em.createNamedQuery("RptlegalPerfilEmpresa.empXrpt", RptlegalPerfilEmpresa.class).setParameter("rutRpt", rutRpt).getResultList();
+     }catch(Exception ex){
+     rpt=null;
+    }  
+    return rpt;
+    }
+     
+     
+     
+       public List<RptlegalPerfilEmpresa> empRptPermisos(String rutRpt)
+    {
+        List<RptlegalPerfilEmpresa> rpt= null;
+    try{    
+    rpt=em.createNamedQuery("RptlegalPerfilEmpresa.empXrptPermisos", RptlegalPerfilEmpresa.class).setParameter("rutRpt", rutRpt).getResultList();
+     }catch(Exception ex){
+     rpt=null;
+    }  
+    return rpt;
+    }
+     
+     
+     public void asignaEmpresa(RptlegalPerfilEmpresa permiso)
+         {
+             em.persist(permiso);
+         }
+   
     
     
 }

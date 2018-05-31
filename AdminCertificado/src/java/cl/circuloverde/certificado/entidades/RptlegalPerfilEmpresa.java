@@ -28,7 +28,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "rptlegal_perfil_empresa", catalog = "certificado", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "RptlegalPerfilEmpresa.permisos", query = "SELECT r FROM RptlegalPerfilEmpresa r where r.rutEmpresa.rutEmpresa =:rutEmp")
+    @NamedQuery(name = "RptlegalPerfilEmpresa.empXrptPermisos", query = "SELECT r FROM RptlegalPerfilEmpresa r where r.rutRptLegal.rutRptLegal =:rutRpt")
+    ,@NamedQuery(name = "RptlegalPerfilEmpresa.empXrpt", query = "SELECT r FROM RptlegalPerfilEmpresa r where r.rutRptLegal.rutRptLegal =:rutRpt GROUP BY R.rutEmpresa.rutEmpresa")
+    ,@NamedQuery(name = "RptlegalPerfilEmpresa.permisos", query = "SELECT r FROM RptlegalPerfilEmpresa r where r.rutEmpresa.rutEmpresa =:rutEmp")
     ,@NamedQuery(name = "RptlegalPerfilEmpresa.rptXemp", query = "SELECT r FROM RptlegalPerfilEmpresa r where r.rutEmpresa.rutEmpresa =:rutEmp GROUP BY R.rutRptLegal.rutRptLegal")
     , @NamedQuery(name = "RptlegalPerfilEmpresa.findAll", query = "SELECT r FROM RptlegalPerfilEmpresa r")
     , @NamedQuery(name = "RptlegalPerfilEmpresa.findByIdrptLegalperfilempresa", query = "SELECT r FROM RptlegalPerfilEmpresa r WHERE r.idrptLegalperfilempresa = :idrptLegalperfilempresa")

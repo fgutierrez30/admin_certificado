@@ -53,4 +53,14 @@ public class UsuarioSessionBean {
     }
     
     
+    public void actualizaUsr(UsuarioCv usr)
+    {
+        em.merge(usr);
+    }
+    
+    public void crearUsr(UsuarioCv usr)
+    {
+        em.persist(usr);
+    }
+    
 }

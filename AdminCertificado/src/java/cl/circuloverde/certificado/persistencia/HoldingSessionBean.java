@@ -38,4 +38,15 @@ public class HoldingSessionBean {
    }
    
    
+   public Holding hdlXID (int id)
+   {
+       return em.createNamedQuery("Holding.findByIdHolding", Holding.class).setParameter("idHolding", id).getSingleResult();
+   }
+   
+   
+   public void crearHolding(Holding hdl)
+   {
+       em.persist(hdl);
+   }
+   
 }
