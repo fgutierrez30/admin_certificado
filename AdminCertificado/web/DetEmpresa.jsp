@@ -124,11 +124,7 @@
               
                 
                 <!-- pop up -->
-                <div class="Container" style="margin-top: 100px;"  >
-                    <button class="btn btn-info" data-toggle="modal" data-target="#miventana">
-                     Abrir Ventana
-                    </button>                
-                </div>
+                
                 
                 
                 <div class="modal fade bd-example-modal-lg" id="miventana" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">

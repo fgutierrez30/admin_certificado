@@ -58,19 +58,16 @@ public class Empresa implements Serializable {
     @Column(name = "estado_emp", nullable = false)
     private int estadoEmp;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 80)
-    @Column(name = "mail_contacto", nullable = false, length = 80)
+        @Size(min = 1, max = 80)
+    @Column(name = "mail_contacto", length = 80)
     private String mailContacto;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 80)
-    @Column(name = "mail_sii", nullable = false, length = 80)
+    @Column(name = "mail_sii", length = 80)
     private String mailSii;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 80)
-    @Column(name = "mail_adm", nullable = false, length = 80)
+    @Column(name = "mail_adm", length = 80)
     private String mailAdm;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "rutEmpresa")
     private List<RptlegalPerfilEmpresa> rptlegalPerfilEmpresaList;

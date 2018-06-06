@@ -8,7 +8,6 @@ package cl.circuloverde.certificado.presentacion;
 import cl.circuloverde.certificado.entidades.Empresa;
 import cl.circuloverde.certificado.persistencia.EmpresaSessionBean;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
