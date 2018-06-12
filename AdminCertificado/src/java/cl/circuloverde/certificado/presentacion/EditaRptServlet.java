@@ -49,7 +49,16 @@ public class EditaRptServlet extends HttpServlet {
         rpt.setRutRptLegal(request.getParameter("rut_rpt"));
         rpt.setNomRptLegal(request.getParameter("txtNombre"));
         rpt.setApellRptLegal(request.getParameter("txtApellido"));
-        rpt.setCorreoRptLegal(request.getParameter("txtCorreo"));
+        String correo=request.getParameter("txtCorreo");
+        if(correo.isEmpty())
+        {
+           rpt.setCorreoRptLegal("No Informado"); 
+        }else
+        {
+          rpt.setCorreoRptLegal(correo);  
+        }
+            
+        
         rpt.setEstadoRptLegal(Integer.parseInt(request.getParameter("cmbEstado")));
         
         this.objRptLegalSessionBean.actualizaRpt(rpt);

@@ -1,4 +1,4 @@
- 
+<meta charset="utf-8"> 
 <div class="col-md-12">
             <!-- Horizontal Form -->
             <div class="card card-primary">

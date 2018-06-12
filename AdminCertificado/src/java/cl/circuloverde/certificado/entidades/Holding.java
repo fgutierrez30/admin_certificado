@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "holding", catalog = "certificado", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Holding.findAll", query = "SELECT h FROM Holding h")
+    @NamedQuery(name = "Holding.findAll", query = "SELECT h FROM Holding h order by h.nomHolding")
     , @NamedQuery(name = "Holding.findByIdHolding", query = "SELECT h FROM Holding h WHERE h.idHolding = :idHolding")
     , @NamedQuery(name = "Holding.findByNomHolding", query = "SELECT h FROM Holding h WHERE h.nomHolding = :nomHolding")})
 public class Holding implements Serializable {

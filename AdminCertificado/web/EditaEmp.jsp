@@ -1,4 +1,5 @@
- <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<meta charset="utf-8">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="col-md-12">
             <!-- Horizontal Form -->
             <div class="card card-primary">
@@ -47,7 +48,15 @@
                         <label for="estado">Holding</label>
                         <select class="form-control" id="estado" name="cmbHolding">
                             <c:forEach items="${hdl}" var="holding">
-                                <option value="${holding.idHolding}"><c:out value="${holding.nomHolding}"/></option>
+                                <c:choose>
+                                    <c:when test="${holding.idHolding==emp.idHolding.idHolding}">
+                                        <option value="${holding.idHolding}" selected=""><c:out value="${holding.nomHolding}"/></option> 
+                                    </c:when>
+                                    <c:otherwise>
+                                        <option value="${holding.idHolding}"><c:out value="${holding.nomHolding}"/></option>
+                                    </c:otherwise>
+                                </c:choose>
+                                
                             </c:forEach>
                         </select>
                       </div>

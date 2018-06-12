@@ -32,7 +32,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Administrador</b>SII</a>
+    <a href="../../index2.html"><b>Administrador</b>Firmas Electrónicas</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
@@ -40,7 +40,7 @@
 
     <form action="./login" method="post">
       <div class="form-group has-feedback">
-          <input type="text" class="form-control" placeholder="Email" name="txtusr">
+          <input type="text" class="form-control" placeholder="Usuario" name="txtusr">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">

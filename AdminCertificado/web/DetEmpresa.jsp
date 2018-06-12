@@ -10,6 +10,7 @@
 
 
 <body class="hold-transition sidebar-mini">
+      <jsp:include page="./detEmpresa?rut_emp=${empresa.rutEmpresa}" flush="true"/>
       <jsp:useBean id="empresas" class="cl.circuloverde.certificado.entidades.Empresa" scope="page"></jsp:useBean>
 
 

@@ -86,7 +86,8 @@ public class TestServlet extends HttpServlet {
             this.objUsrPerfilEmpresaSessionBean.asignaEmpresa(asigna);
             
             
-        }else if (firmaDocto!=null){
+        }
+        if (firmaDocto!=null){
             
             UsrPerfilEmpresa asigna=new UsrPerfilEmpresa();
             UsuarioCv usr=this.objUsuarioSessionBean.usrXRut(rut_usr);
@@ -102,7 +103,8 @@ public class TestServlet extends HttpServlet {
             
             this.objUsrPerfilEmpresaSessionBean.asignaEmpresa(asigna);
             
-        }else if(registros!=null)
+        }
+        if(registros!=null)
         {
             UsrPerfilEmpresa asigna=new UsrPerfilEmpresa();
             UsuarioCv usr=this.objUsuarioSessionBean.usrXRut(rut_usr);
@@ -118,7 +120,8 @@ public class TestServlet extends HttpServlet {
             
             this.objUsrPerfilEmpresaSessionBean.asignaEmpresa(asigna);
             
-        }else if(solicitaFolio!=null)
+        }
+        if(solicitaFolio!=null)
         {
             UsrPerfilEmpresa asigna=new UsrPerfilEmpresa();
             UsuarioCv usr=this.objUsuarioSessionBean.usrXRut(rut_usr);
@@ -134,7 +137,8 @@ public class TestServlet extends HttpServlet {
             
             this.objUsrPerfilEmpresaSessionBean.asignaEmpresa(asigna);
             
-        }else if(anulaFolio!=null)
+        }
+        if(anulaFolio!=null)
         {
             
             UsrPerfilEmpresa asigna=new UsrPerfilEmpresa();
@@ -151,7 +155,8 @@ public class TestServlet extends HttpServlet {
             
             this.objUsrPerfilEmpresaSessionBean.asignaEmpresa(asigna);
             
-        }else if(enviaDocto!=null)
+        }
+        if(enviaDocto!=null)
         {
             UsrPerfilEmpresa asigna=new UsrPerfilEmpresa();
             UsuarioCv usr=this.objUsuarioSessionBean.usrXRut(rut_usr);
@@ -167,7 +172,8 @@ public class TestServlet extends HttpServlet {
             
             this.objUsrPerfilEmpresaSessionBean.asignaEmpresa(asigna);
             
-        }else if(consulta!=null)
+        }
+        if(consulta!=null)
         {
             UsrPerfilEmpresa asigna=new UsrPerfilEmpresa();
             UsuarioCv usr=this.objUsuarioSessionBean.usrXRut(rut_usr);
@@ -183,7 +189,9 @@ public class TestServlet extends HttpServlet {
             
             this.objUsrPerfilEmpresaSessionBean.asignaEmpresa(asigna);
             
-        }else{
+        }
+        if(consulta==null && enviaDocto==null && anulaFolio==null && solicitaFolio==null && registros==null && firmaDocto==null && adm==null)
+        {
             
             String error="No se ha seleccionado ningun permiso";
             sesion.setAttribute("msj", error);

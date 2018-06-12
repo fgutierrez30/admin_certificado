@@ -56,9 +56,9 @@
             
                     
         </div>
-        <div class="card-body">
-          
-            <table id="ejemplo" class="table table-bordered table-hover">
+        
+        <div class="card-body">   
+            <table id="ejemplo" class="table table-hover table-bordered">
                 
               <thead>
                     <th>Rut</th>
@@ -70,9 +70,9 @@
               <tbody>
                   <c:forEach items="${empresasVig}" var="empresa">
                   <tr>
-                      <td><c:out value="${empresa.rutEmpresa}"/></td>
+                      <td style="width:11%"><c:out value="${empresa.rutEmpresa}"/></td>
                       <td><c:out value="${empresa.razonSocial}"/></td>
-                      <td><c:out value="${empresa.idHolding.nomHolding}"/></td>
+                      <td style="width:26%"><c:out value="${empresa.idHolding.nomHolding}"/></td>
                       <td><a href="./detEmpresa?rut_emp=${empresa.rutEmpresa}"><small class="badge badge-danger"> Ver Detalle</small></a> </td>
                       
                       

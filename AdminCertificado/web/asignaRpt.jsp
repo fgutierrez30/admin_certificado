@@ -53,6 +53,8 @@
                       <input type="checkbox" name="chkAF" value="6" />Anular Folios<br />
                       <input type="checkbox" name="chkED" value="7" />Enviar Doctos<br />
                       <input type="checkbox" name="chkConsult" value="8" />Consulta<br />
+                      <input type="checkbox" name="chkConsult" value="9" />LCE<br />
+                      <input type="checkbox" name="chkConsult" value="10" />Sin Permiso<br />
                   </fieldset>
                   
                 </div>

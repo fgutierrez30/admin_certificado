@@ -58,9 +58,33 @@ public class EditaEmpresaServlet extends HttpServlet {
         emp.setRutEmpresa(rut);
         emp.setRazonSocial(request.getParameter("txtRazonSocial"));
         emp.setEstadoEmp(Integer.parseInt(request.getParameter("cmbEstado")));
-        emp.setMailContacto(request.getParameter("txtMailContacto"));
-        emp.setMailSii(request.getParameter("txtMailSII"));
-        emp.setMailAdm(request.getParameter("txtMailAdm"));
+        String mailContacto=request.getParameter("txtMailContacto");
+        if(mailContacto.isEmpty())
+        {
+          emp.setMailContacto("No informado");  
+        }else
+        {
+          emp.setMailContacto(mailContacto);  
+        }
+        
+        String mailSII=request.getParameter("txtMailSII");
+        if(mailSII.isEmpty())
+        {
+            emp.setMailSii("No informado");
+        }else
+        {
+            emp.setMailSii(mailSII);
+        }
+        
+        String mailAdm=request.getParameter("txtMailAdm");
+        if(mailAdm.isEmpty())
+        {
+            emp.setMailAdm("No Informado");
+        }else
+        {
+            emp.setMailAdm(mailAdm);
+        }
+        
         Holding holding=this.objHoldingSessionBean.hdlXID(idHolding);
         emp.setIdHolding(holding);
         

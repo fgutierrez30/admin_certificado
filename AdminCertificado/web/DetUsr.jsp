@@ -8,7 +8,7 @@
 </head>
 <body class="hold-transition sidebar-mini">
     
-    
+      <jsp:include page="./detUsr?rut_usr=${usuario.rutUsrCv}" flush="true"/>
       <jsp:useBean id="usuarios" class="cl.circuloverde.certificado.entidades.UsuarioCv" scope="page"></jsp:useBean>
       <jsp:useBean id="users" class="cl.circuloverde.certificado.entidades.UsrPerfilEmpresa" scope="page"></jsp:useBean>
       
